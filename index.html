@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Zahler Pinball — Everything we know, you're going to learn.</title>
-<meta name="description" content="Pinball training from the 3× IFPA World Champion and the coach-dad who built him. Skills, strategy, and the athlete's system. Newsletter launching now.">
+<title>Zahler Pinball Academy — Train with the World's #1</title>
+<meta name="description" content="Flipper skills coaching from the world's #1-ranked pinball player and the coach who raised him. East Village, NYC.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Archivo:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#130e09;
-  --panel:#1d150d;
-  --amber:#ffae00;
-  --amber-dim:#5a3a08;
-  --red:#e63329;
-  --cream:#f6ead6;
-  --steel:#9b8e7c;
+  --ink:#130e09;            /* warm cabinet black */
+  --panel:#1d150d;          /* backbox panel brown-black */
+  --amber:#ffae00;          /* DMD plasma orange */
+  --amber-dim:#5a3a08;      /* unlit dot */
+  --red:#e63329;            /* cabinet red */
+  --cream:#f6ead6;          /* backglass cream */
+  --steel:#9b8e7c;          /* muted caption */
   --maxw:1080px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -31,158 +31,175 @@ body{
 }
 ::selection{background:var(--amber);color:var(--ink)}
 a{color:var(--amber)}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+img{max-width:100%}
 
-h1,h2,h3,.display{font-family:'Bungee',cursive;font-weight:400;line-height:1.08;letter-spacing:.01em}
+h1,h2,h3,.display{font-family:'Bungee',cursive;font-weight:400;line-height:1.05;letter-spacing:.01em}
 .mono{font-family:'Share Tech Mono',monospace}
+
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 
-/* header */
-header{position:sticky;top:0;z-index:50;background:rgba(19,14,9,.92);backdrop-filter:blur(8px);border-bottom:1px solid #2c2115}
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(19,14,9,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid #2c2115;
+}
 .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
 .logo{font-family:'Bungee',cursive;font-size:15px;color:var(--cream);text-decoration:none;display:flex;align-items:center;gap:10px}
 .logo .ball{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#b9b9b9 45%,#5e5e5e);flex:none}
 .logo em{font-style:normal;color:var(--amber)}
-.navlinks{display:flex;gap:24px}
-.navlinks a{font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);text-decoration:none}
+.navlinks{display:flex;gap:26px}
+.navlinks a{
+  font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--steel);text-decoration:none;
+}
 .navlinks a:hover{color:var(--amber)}
-.navlinks a.hot{color:var(--red)}
-@media(max-width:760px){.navlinks{display:none}}
+@media(max-width:700px){.navlinks{display:none}}
 
-/* hero */
+/* ---------- hero / backbox ---------- */
 .hero{padding:56px 0 0}
 .backbox{
-  border:3px solid #3a2c1c;border-radius:10px;
+  border:3px solid #3a2c1c;
+  border-radius:10px;
   background:linear-gradient(180deg,#241a10,#160f08);
   box-shadow:0 0 0 6px #0c0805, 0 22px 60px rgba(0,0,0,.6), inset 0 1px 0 #4a3a26;
-  padding:18px 18px 14px;position:relative;
+  padding:18px 18px 14px;
+  position:relative;
 }
-.backbox::before,.backbox::after{
+.backbox::before,.backbox::after{ /* speaker grilles */
   content:"";position:absolute;bottom:18px;width:36px;height:36px;border-radius:50%;
   background:radial-gradient(circle,#000 30%,transparent 31%) 0 0/6px 6px, #1a120a;
   border:2px solid #3a2c1c;opacity:.85;
 }
 .backbox::before{left:18px}
 .backbox::after{right:18px}
-#dmd{display:block;width:100%;height:auto;border-radius:4px;background:#000;box-shadow:inset 0 0 24px rgba(0,0,0,.9), 0 0 30px rgba(255,174,0,.10)}
-.dmd-cap{text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.3em;color:#6b5536;margin-top:10px;text-transform:uppercase}
-.hero h1{font-size:clamp(28px,5.6vw,58px);text-align:center;margin:44px auto 18px;max-width:900px}
+#dmd{
+  display:block;width:100%;height:auto;border-radius:4px;
+  background:#000;
+  box-shadow:inset 0 0 24px rgba(0,0,0,.9), 0 0 30px rgba(255,174,0,.10);
+}
+.dmd-cap{
+  text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;
+  letter-spacing:.3em;color:#6b5536;margin-top:10px;text-transform:uppercase;
+}
+.hero h1{
+  font-size:clamp(34px,7.2vw,76px);
+  text-align:center;margin:44px 0 18px;
+  color:var(--cream);
+}
 .hero h1 .hl{color:var(--amber);text-shadow:0 0 26px rgba(255,174,0,.45)}
-.hero .sub{max-width:640px;margin:0 auto;text-align:center;color:var(--steel);font-size:18px}
-.hero .sub b{color:var(--cream)}
-.badge{
-  display:block;width:fit-content;margin:26px auto 0;
-  font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--red);border:1px dashed var(--red);padding:7px 14px;border-radius:4px;
+.hero .sub{
+  max-width:620px;margin:0 auto;text-align:center;color:var(--steel);font-size:18px;
 }
 .cta-row{display:flex;gap:16px;justify-content:center;margin:34px 0 0;flex-wrap:wrap}
 .btn{
   font-family:'Bungee',cursive;font-size:14px;letter-spacing:.04em;
   padding:15px 26px;border-radius:6px;text-decoration:none;border:2px solid var(--amber);
-  cursor:pointer;transition:transform .12s ease, box-shadow .12s ease;
+  transition:transform .12s ease, box-shadow .12s ease;
 }
 .btn:active{transform:translateY(2px)}
 .btn-fill{background:var(--amber);color:var(--ink);box-shadow:0 6px 0 #8a5e00}
 .btn-fill:active{box-shadow:0 3px 0 #8a5e00}
-.btn-line{color:var(--amber);background:transparent}
+.btn-line{color:var(--amber)}
 
-/* ticker */
-.ticker{margin-top:72px;border-top:2px solid var(--red);border-bottom:2px solid var(--red);background:#1a0c0a;overflow:hidden;white-space:nowrap}
-.ticker-inner{display:inline-block;padding:12px 0;font-family:'Bungee',cursive;font-size:14px;color:var(--red);animation:tick 30s linear infinite}
+/* ---------- ticker ---------- */
+.ticker{
+  margin-top:72px;border-top:2px solid var(--red);border-bottom:2px solid var(--red);
+  background:#1a0c0a;overflow:hidden;white-space:nowrap;
+}
+.ticker-inner{
+  display:inline-block;padding:12px 0;
+  font-family:'Bungee',cursive;font-size:14px;color:var(--red);
+  animation:tick 28s linear infinite;
+}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* sections */
+/* ---------- sections ---------- */
 section{padding:88px 0}
-.eyebrow{font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
-h2{font-size:clamp(25px,4.4vw,42px);margin-bottom:18px}
-.lede{color:var(--steel);max-width:660px;font-size:18px;margin-bottom:48px}
-.lede b{color:var(--cream)}
+.eyebrow{
+  font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:14px;
+}
+h2{font-size:clamp(26px,4.4vw,42px);margin-bottom:18px}
+.lede{color:var(--steel);max-width:640px;font-size:18px;margin-bottom:48px}
 
-/* duo */
+/* coaches */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 @media(max-width:780px){.duo{grid-template-columns:1fr}}
-.coach{border:2px solid #33271a;border-radius:10px;background:var(--panel);padding:32px 30px;position:relative;overflow:hidden}
+.coach{
+  border:2px solid #33271a;border-radius:10px;background:var(--panel);
+  padding:32px 30px;position:relative;overflow:hidden;
+}
 .coach::after{
-  content:attr(data-player);position:absolute;top:18px;right:20px;
+  content:attr(data-player);
+  position:absolute;top:18px;right:20px;
   font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.2em;
   color:var(--ink);background:var(--amber);padding:4px 10px;border-radius:3px;
 }
-.coach h3{font-size:24px;margin-bottom:4px}
+.coach h3{font-size:24px;margin-bottom:4px;color:var(--cream)}
 .coach .role{font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:18px}
 .coach p{color:var(--steel);margin-bottom:18px}
 .statline{list-style:none}
-.statline li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px dashed #3b2d1d;font-family:'Share Tech Mono',monospace;font-size:14px}
-.statline li span:last-child{color:var(--amber);text-align:right}
-.agecall{
-  margin-top:28px;border:2px solid #33271a;border-left:6px solid var(--amber);
-  border-radius:8px;background:var(--panel);padding:24px 26px;
+.statline li{
+  display:flex;justify-content:space-between;gap:12px;
+  padding:9px 0;border-top:1px dashed #3b2d1d;
+  font-family:'Share Tech Mono',monospace;font-size:14px;
 }
-.agecall h3{font-size:17px;margin-bottom:8px;color:var(--amber)}
-.agecall p{color:var(--steel);font-size:15.5px}
+.statline li span:last-child{color:var(--amber);text-align:right}
 
-/* university pillars */
+/* method */
 .method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 @media(max-width:820px){.method-grid{grid-template-columns:1fr}}
 .pillar{border-top:4px solid var(--red);background:var(--panel);border-radius:0 0 10px 10px;padding:28px 26px}
 .pillar .num{font-family:'Share Tech Mono',monospace;color:var(--red);font-size:13px;letter-spacing:.2em;margin-bottom:12px}
 .pillar h3{font-size:18px;margin-bottom:12px}
-.pillar p{color:var(--steel);font-size:15.5px;margin-bottom:14px}
-.pillar ul{list-style:none}
-.pillar ul li{padding:5px 0 5px 20px;position:relative;color:var(--steel);font-size:14.5px}
-.pillar ul li::before{content:"▸";position:absolute;left:0;color:var(--amber)}
+.pillar p{color:var(--steel);font-size:15.5px}
 
-/* secret tapes */
-.tapes{background:#0e0a06}
-.tape-box{
-  border:2px dashed var(--red);border-radius:10px;background:#160c0a;
-  padding:38px 34px;position:relative;max-width:820px;
+/* curriculum ladder */
+.ladder{list-style:none;max-width:760px}
+.ladder li{
+  display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:8px 18px;
+  padding:16px 4px;border-bottom:1px solid #2c2115;
 }
-.tape-box::before{
-  content:"CLASSIFIED // ZP-001";
-  position:absolute;top:-12px;left:26px;background:var(--red);color:#fff;
-  font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.22em;padding:4px 12px;border-radius:3px;
-}
-.tape-box h3{font-size:clamp(20px,3.4vw,30px);margin-bottom:16px}
-.tape-box p{color:var(--steel);margin-bottom:16px}
-.tape-box p b{color:var(--cream)}
-.cassette{
-  display:flex;align-items:center;gap:14px;margin:24px 0;
-  font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--amber);
-}
-.reel{width:30px;height:30px;border:2px solid var(--amber);border-radius:50%;position:relative;flex:none}
-.reel::after{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--amber)}
-.wave{flex:1;height:22px;background:repeating-linear-gradient(90deg,var(--amber-dim) 0 3px,transparent 3px 6px);border-radius:2px;opacity:.8}
+.ladder .skill{font-family:'Bungee',cursive;font-size:clamp(15px,2.6vw,20px)}
+.ladder .pts{font-family:'Share Tech Mono',monospace;color:var(--amber);font-size:15px;white-space:nowrap}
+.ladder .desc{grid-column:1/-1;color:var(--steel);font-size:15px}
+.ladder li:hover .skill{color:var(--amber)}
 
-/* live */
-.shows{list-style:none;max-width:760px}
-.shows li{display:grid;grid-template-columns:auto 1fr;gap:8px 22px;align-items:baseline;padding:18px 4px;border-bottom:1px solid #2c2115}
-.shows .when{font-family:'Share Tech Mono',monospace;color:var(--red);font-size:14px;white-space:nowrap}
-.shows .what{font-family:'Bungee',cursive;font-size:clamp(15px,2.6vw,19px)}
-.shows .where{grid-column:2;color:var(--steel);font-size:15px}
-
-/* newsletter */
-.signup{background:#0e0a06}
-.signup-box{border:2px solid var(--amber);border-radius:10px;background:var(--panel);padding:42px 36px;box-shadow:0 0 40px rgba(255,174,0,.12);max-width:820px;margin:0 auto;text-align:center}
-.signup-box h2{margin-bottom:12px}
-.signup-box p{color:var(--steel);margin-bottom:26px}
-.form-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.form-row input{
-  flex:1;min-width:220px;max-width:380px;
-  background:#120c07;border:2px solid #4a3a26;border-radius:6px;
-  color:var(--cream);font-family:'Share Tech Mono',monospace;font-size:15px;padding:14px 16px;
+/* programs */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:820px){.tiers{grid-template-columns:1fr}}
+.tier{
+  border:2px solid #33271a;border-radius:10px;background:var(--panel);
+  padding:30px 28px;display:flex;flex-direction:column;
 }
-.form-row input::placeholder{color:#6b5536}
-.fine{font-family:'Share Tech Mono',monospace;font-size:12px;color:#6b5536;margin-top:18px;letter-spacing:.06em}
-#signup-msg{display:none;color:var(--amber);font-family:'Bungee',cursive;font-size:16px;margin-top:18px}
+.tier.featured{border-color:var(--amber);box-shadow:0 0 34px rgba(255,174,0,.12)}
+.tier h3{font-size:18px;margin-bottom:6px}
+.tier .price{font-family:'Share Tech Mono',monospace;color:var(--amber);font-size:26px;margin:10px 0 18px}
+.tier .price small{font-size:13px;color:var(--steel)}
+.tier ul{list-style:none;margin-bottom:26px;flex:1}
+.tier ul li{padding:7px 0 7px 22px;position:relative;color:var(--steel);font-size:15px}
+.tier ul li::before{content:"▸";position:absolute;left:0;color:var(--red)}
+.tier .btn{text-align:center}
 
-/* patreon teaser */
-.soon{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px}
-.chip{font-family:'Share Tech Mono',monospace;font-size:12.5px;letter-spacing:.1em;color:var(--steel);border:1px solid #3b2d1d;border-radius:999px;padding:7px 15px}
-.chip b{color:var(--amber);font-weight:400}
+/* visit */
+.visit-box{
+  border:2px solid #33271a;border-radius:10px;background:var(--panel);
+  padding:36px 32px;display:grid;grid-template-columns:1.2fr 1fr;gap:36px;
+}
+@media(max-width:720px){.visit-box{grid-template-columns:1fr}}
+.visit-box h3{font-size:20px;margin-bottom:14px}
+.visit-box p{color:var(--steel);margin-bottom:14px}
+.hours{list-style:none;font-family:'Share Tech Mono',monospace;font-size:14px}
+.hours li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #3b2d1d}
+.hours li span:last-child{color:var(--amber)}
 
 /* footer */
 footer{border-top:1px solid #2c2115;padding:42px 0 60px;color:#6b5d4c;font-size:13.5px}
 footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer .mono{letter-spacing:.1em}
 
 /* reveal */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
@@ -198,14 +215,13 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#top"><span class="ball"></span>ZAHLER <em>PINBALL</em></a>
+    <a class="logo" href="#top"><span class="ball"></span>ZAHLER <em>PINBALL ACADEMY</em></a>
     <nav class="navlinks">
-      <a href="#story">The Story</a>
-      <a href="#university">Pinball U</a>
-      <a href="#tapes" class="hot">Secret Tapes</a>
-      <a href="#live">Live</a>
-      <a href="#friends">Friends</a>
-      <a href="#newsletter">Newsletter</a>
+      <a href="#coaches">The Coaches</a>
+      <a href="#method">Method</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#programs">Programs</a>
+      <a href="#visit">Visit</a>
     </nav>
   </div>
 </header>
@@ -216,241 +232,201 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <div class="hero">
     <div class="wrap">
       <div class="backbox">
-        <canvas id="dmd" width="1280" height="320" aria-label="Dot matrix display reading: Jason Zahler, 3-time IFPA World Champion, threepeat, coached by dad"></canvas>
+        <canvas id="dmd" width="1280" height="320" aria-label="Dot matrix display reading: Jason Zahler, world ranked number one, five-time major champion"></canvas>
         <div class="dmd-cap">128 × 32 &nbsp;plasma display &nbsp;·&nbsp; attract mode</div>
       </div>
-
-      <h1>EVERYTHING WE KNOW ABOUT PINBALL, <span class="hl">YOU'RE GOING TO LEARN.</span></h1>
-      <p class="sub">Training, secrets, and the full athlete's system from <b>Jason Zahler</b> — three-time IFPA World Champion, the threepeat — and <b>Steve Zahler</b>, the coach-dad who built him.</p>
-
-      <span class="badge">★ As seen absolutely everywhere (soon) ★</span>
-
+      <h1>LEARN FROM<br><span class="hl">PLAYER ONE.</span></h1>
+      <p class="sub">Flipper skills coaching from the world's #1-ranked pinball player — and the coach-dad who built him, one glass-off drill at a time.</p>
       <div class="cta-row">
-        <a class="btn btn-fill" href="#newsletter">Get the newsletter</a>
-        <a class="btn btn-line" href="#university">See what's coming</a>
+        <a class="btn btn-fill" href="#programs">Book a session</a>
+        <a class="btn btn-line" href="#method">See the method</a>
       </div>
     </div>
 
     <div class="ticker" aria-hidden="true">
       <div class="ticker-inner">
-        THREEPEAT WORLD CHAMPION &nbsp;★&nbsp; PINBURGH WINNER &nbsp;★&nbsp; THE PINBALL DIET &nbsp;★&nbsp; THE PERFECT WARM-UP &nbsp;★&nbsp; SDTM IS A LIE &nbsp;★&nbsp; READ THE BALL &nbsp;★&nbsp; THE SECRET TAPES &nbsp;★&nbsp; AGE DOESN'T MATTER &nbsp;★&nbsp;
-        THREEPEAT WORLD CHAMPION &nbsp;★&nbsp; PINBURGH WINNER &nbsp;★&nbsp; THE PINBALL DIET &nbsp;★&nbsp; THE PERFECT WARM-UP &nbsp;★&nbsp; SDTM IS A LIE &nbsp;★&nbsp; READ THE BALL &nbsp;★&nbsp; THE SECRET TAPES &nbsp;★&nbsp; AGE DOESN'T MATTER &nbsp;★&nbsp;
+        DROP CATCH &nbsp;★&nbsp; LIVE CATCH &nbsp;★&nbsp; POST PASS &nbsp;★&nbsp; DEAD BOUNCE &nbsp;★&nbsp; SLAP SAVE &nbsp;★&nbsp; TILT CONTROL &nbsp;★&nbsp; SKILL SHOTS &nbsp;★&nbsp; RULESHEET STRATEGY &nbsp;★&nbsp;
+        DROP CATCH &nbsp;★&nbsp; LIVE CATCH &nbsp;★&nbsp; POST PASS &nbsp;★&nbsp; DEAD BOUNCE &nbsp;★&nbsp; SLAP SAVE &nbsp;★&nbsp; TILT CONTROL &nbsp;★&nbsp; SKILL SHOTS &nbsp;★&nbsp; RULESHEET STRATEGY &nbsp;★&nbsp;
       </div>
     </div>
   </div>
 
-  <!-- STORY -->
-  <section id="story">
+  <!-- COACHES -->
+  <section id="coaches">
     <div class="wrap">
-      <p class="eyebrow reveal">The Story</p>
-      <h2 class="reveal">The most decorated father-son duo in the history of organized flipping</h2>
-      <p class="lede reveal">A dad lifts the glass off a pinball machine and starts placing the ball by hand for his kid. Years later, that kid is the <b>#1-ranked player on Earth</b> and just won his <b>third consecutive World Championship</b>. Players keep asking us how. So we're finally writing it all down.</p>
+      <p class="eyebrow reveal">Two players. One bloodline.</p>
+      <h2 class="reveal">The father-son duo at the top of the game</h2>
+      <p class="lede reveal">A world champion and the lifelong competitor who coached him from a wooden stool at the arcade to the #1 spot in the World Pinball Player Rankings.</p>
 
       <div class="duo">
         <article class="coach reveal" data-player="PLAYER 1">
           <h3>Jason Zahler</h3>
-          <p class="role">World #1 · 3× World Champion</p>
-          <p>Playing since age three, competing since childhood, studying nutrition in college, and now the only player ever to threepeat the IFPA World Championship. He'll show you the saves that look like magic — and prove they aren't.</p>
+          <p class="role">Head Instructor · World #1</p>
+          <p>Playing since age three, competing since childhood, and now the reigning IFPA World Champion. Jason teaches the exact flipper mechanics, game plans, and tournament composure that carried him through 11-hour championship days.</p>
           <ul class="statline">
-            <li><span>IFPA World Championship</span><span>3× IN A ROW</span></li>
             <li><span>IFPA World Ranking</span><span>#1</span></li>
-            <li><span>Pinburgh 2024</span><span>WINNER</span></li>
-            <li><span>Silverball Rumble</span><span>BACK-TO-BACK</span></li>
-            <li><span>First titles</span><span>NJ STATE · PAPA JRS</span></li>
+            <li><span>Major championships</span><span>5</span></li>
+            <li><span>IFPA21 World Championship</span><span>WINNER · 2026</span></li>
+            <li><span>Tournaments played</span><span>240+</span></li>
           </ul>
         </article>
 
         <article class="coach reveal" data-player="PLAYER 2">
           <h3>Steve Zahler</h3>
-          <p class="role">Head Coach · The Dad</p>
-          <p>Taekwondo guy, arcade owner, and the architect of the whole system — glass-off drills, warm-ups, sleep schedules, the works. He coached Jason the hard way and will coach you the same way. Also: occasionally records his son in secret.</p>
+          <p class="role">Head Coach · Founder</p>
+          <p>A world-ranked player for most of his adult life and a New York arcade owner, Steve built a coaching system the way sports coaches build drills — including his signature move: lifting the glass off the machine so the fundamentals can't hide.</p>
           <ul class="statline">
-            <li><span>Started competing</span><span>AGE 41</span></li>
-            <li><span>PAPA A Division finals</span><span>MONTHS LATER</span></li>
-            <li><span>Peak world ranking</span><span>#19 · AT AGE 55</span></li>
             <li><span>Coaching Jason since</span><span>AGE 3</span></li>
+            <li><span>Ranking</span><span>TOP 1% WORLDWIDE</span></li>
+            <li><span>Arcade</span><span>MODERN PINBALL NYC</span></li>
             <li><span>Training philosophy</span><span>GLASS OFF</span></li>
           </ul>
         </article>
       </div>
-
-      <div class="agecall reveal">
-        <h3>AGE DOESN'T MATTER</h3>
-        <p>Steve started competitive pinball at 41 and hit his highest world ranking 14 years later — beating players half, even a quarter, his age. Whatever your age, you're not too late. You're right on time.</p>
-      </div>
     </div>
   </section>
 
-  <!-- PINBALL UNIVERSITY -->
-  <section id="university" style="background:#0e0a06">
+  <!-- METHOD -->
+  <section id="method" style="background:#0e0a06">
     <div class="wrap">
-      <p class="eyebrow reveal">Pinball University with Jason &amp; Steve</p>
-      <h2 class="reveal">What you're going to learn</h2>
-      <p class="lede reveal">Not just flipper tricks. The complete system — the same one that built a world champion — in three tracks. Go as fast or slow as you want.</p>
+      <p class="eyebrow reveal">The Zahler Method</p>
+      <h2 class="reveal">How a #1 player actually gets made</h2>
+      <p class="lede reveal">No mysticism, no "just nudge better." Three pillars, drilled in order, on real machines.</p>
 
       <div class="method-grid">
         <div class="pillar reveal">
-          <div class="num">TRACK 01 · THE SKILLS</div>
-          <h3>FLIPPERS &amp; PHYSICS</h3>
-          <p>Master the ball itself, on any machine — EM, solid state, or modern.</p>
-          <ul>
-            <li>Saves that look like magic (most SDTM drains only <i>look</i> SDTM)</li>
-            <li>Read the ball before it reaches your flippers</li>
-            <li>Playfield physics: where to shoot for safe returns</li>
-            <li>Rubbers, bounces, and the right way to hit a cabinet</li>
-          </ul>
+          <div class="num">PILLAR 01</div>
+          <h3>GLASS OFF</h3>
+          <p>We take the playfield glass off and place the ball by hand — the same way Steve trained Jason. You'll run isolated reps of catches, passes, and bounces until each one is a reflex, not a gamble.</p>
         </div>
         <div class="pillar reveal">
-          <div class="num">TRACK 02 · THE STRATEGY</div>
-          <h3>TOURNAMENT CRAFT</h3>
-          <p>How Jason qualifies #1 — and how to survive every format.</p>
-          <ul>
-            <li>Entry management, game selection &amp; order</li>
-            <li>The Little Black Book: our tournament note system</li>
-            <li>Venue conditions &amp; climate, before you plunge</li>
-            <li>Format playbooks, TD diplomacy, travel planning</li>
-          </ul>
+          <div class="num">PILLAR 02</div>
+          <h3>RULE SHEETS</h3>
+          <p>Every machine is a different ballpark. We teach you to read a game's map — skill shots, multiball paths, risk/reward shots — and walk up to an unfamiliar title with a plan before the plunge.</p>
         </div>
         <div class="pillar reveal">
-          <div class="num">TRACK 03 · THE SYSTEM</div>
-          <h3>BODY &amp; BRAIN</h3>
-          <p>The part nobody else teaches. Pinball is a sport — train like it.</p>
-          <ul>
-            <li>The Perfect Pinball Warm-up (taekwondo-derived, no gym)</li>
-            <li>The Pinball Diet, hydration &amp; the sleep pattern that peaks at finals</li>
-            <li>The Pinball Mindset: zen, breathing, handling haters</li>
-            <li>Energy management for 11-hour tournament days</li>
-          </ul>
+          <div class="num">PILLAR 03</div>
+          <h3>PRESSURE REPS</h3>
+          <p>Tournament-format practice: timed games, head-to-head brackets, and tilt discipline under fatigue. The skills only count when announcer, crowd, and stakes are all turned on.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECRET TAPES -->
-  <section id="tapes" class="tapes">
+  <!-- CURRICULUM -->
+  <section id="curriculum">
     <div class="wrap">
-      <p class="eyebrow reveal">Launch Exclusive</p>
-      <h2 class="reveal">THE SECRET TAPES</h2>
-      <div class="tape-box reveal">
-        <h3>Minutes after the threepeat, Dad hit record.</h3>
-        <p><b>Jason had no idea.</b> Steve wanted his son's <i>real</i>, unfiltered reaction — what actually went down at the IFPA World Championship, in private, champion to coach, son to dad.</p>
-        <div class="cassette" aria-hidden="true">
-          <span class="reel"></span>
-          <span class="wave"></span>
-          <span class="reel"></span>
-          <span>ZP-001 · iPHONE MEMO · UNEDITED</span>
-        </div>
-        <p>No cameras. No interviews. Just the truth. Newsletter subscribers hear it first.</p>
-        <a class="btn btn-fill" href="#newsletter">Unlock the tapes</a>
-      </div>
-    </div>
-  </section>
+      <p class="eyebrow reveal">Curriculum</p>
+      <h2 class="reveal">The skill ladder</h2>
+      <p class="lede reveal">Climb it like a score ladder. Each level is tested glass-off before you advance.</p>
 
-  <!-- LIVE -->
-  <section id="live">
-    <div class="wrap">
-      <p class="eyebrow reveal">Catch Us Live</p>
-      <h2 class="reveal">The Zahler Tour begins</h2>
-      <p class="lede reveal">Lessons, meet-ups, and training days at arcades and shows across the country. See us at a tournament? <b>Come say hi and ask us anything — member or not, we're happy to help.</b></p>
-
-      <ul class="shows">
+      <ul class="ladder">
         <li class="reveal">
-          <span class="when">2026</span>
-          <span class="what">PINTASTIC NEW ENGLAND</span>
-          <span class="where">Sturbridge, MA — details soon</span>
+          <span class="skill">Cradle &amp; Trap Control</span><span class="pts">10,000 PTS</span>
+          <span class="desc">Hold the ball at rest on a raised flipper. Calm ball, calm mind — everything else builds on this.</span>
         </li>
         <li class="reveal">
-          <span class="when">2026</span>
-          <span class="what">PINBALL EXPO</span>
-          <span class="where">Chicago, IL — details soon</span>
+          <span class="skill">Dead Bounce</span><span class="pts">25,000 PTS</span>
+          <span class="desc">Let the ball bounce flipper-to-flipper untouched. Knowing when not to flip is the first pro instinct.</span>
         </li>
         <li class="reveal">
-          <span class="when">2027</span>
-          <span class="what">TEXAS PINBALL FESTIVAL</span>
-          <span class="where">Frisco, TX — details soon</span>
+          <span class="skill">Drop Catch</span><span class="pts">50,000 PTS</span>
+          <span class="desc">Kill the ball's momentum by dropping the flipper at the moment of impact. Difficult, and worth it.</span>
         </li>
         <li class="reveal">
-          <span class="when">ONGOING</span>
-          <span class="what">ZAHLER TRAINING DAYS</span>
-          <span class="where">At partner arcades nationwide — hosted lessons, glass off, all ages</span>
+          <span class="skill">Live Catch</span><span class="pts">75,000 PTS</span>
+          <span class="desc">Catch a fast ball on a rising flipper without a bounce. The cleanest save in the game.</span>
+        </li>
+        <li class="reveal">
+          <span class="skill">Post Pass &amp; Flipper Transfers</span><span class="pts">100,000 PTS</span>
+          <span class="desc">Move the ball to the flipper with the better shot. Control which side of the playfield you play from.</span>
+        </li>
+        <li class="reveal">
+          <span class="skill">Nudging &amp; Tilt Management</span><span class="pts">250,000 PTS</span>
+          <span class="desc">Slap saves, slide saves, and living one warning from a tilt without ever crossing the line.</span>
+        </li>
+        <li class="reveal">
+          <span class="skill">Skill Shots &amp; Multiball Strategy</span><span class="pts">500,000 PTS</span>
+          <span class="desc">Free points on the plunge, and keeping a plan alive with three balls on the playfield.</span>
+        </li>
+        <li class="reveal">
+          <span class="skill">Tournament Game Planning</span><span class="pts">1,000,000 PTS</span>
+          <span class="desc">Machine selection, ruleset exploitation, opponent psychology, and 11-hour-day endurance.</span>
         </li>
       </ul>
-
-      <p class="lede reveal" style="margin-top:38px;margin-bottom:0">Own an arcade? <a href="mailto:hello@zahlerpinball.com?subject=Training%20day%20at%20our%20arcade">Host a Zahler training day</a> — your venue, your ticketing, our coaching.</p>
     </div>
   </section>
 
-  <!-- FRIENDS / RESOURCES -->
-  <section id="friends" style="background:#0e0a06">
+  <!-- PROGRAMS -->
+  <section id="programs" style="background:#0e0a06">
     <div class="wrap">
-      <p class="eyebrow reveal">Friends of the Flipper</p>
-      <h2 class="reveal">We promote the people who make pinball great</h2>
-      <p class="lede reveal">Pinball gave us everything. The least we can do is point you toward the organizations, streamers, and arcades keeping it alive.</p>
+      <p class="eyebrow reveal">Programs</p>
+      <h2 class="reveal">Pick your game</h2>
+      <p class="lede reveal">All sessions on real machines in a working arcade. All skill levels welcome — from first flip to finals bracket.</p>
 
-      <div class="method-grid">
-        <div class="pillar reveal">
-          <div class="num">PLAY COMPETITIVELY</div>
-          <h3>THE IFPA</h3>
-          <p>The International Flipper Pinball Association runs the rankings, the World Championship, and thousands of events worldwide. It's where our whole story happened.</p>
+      <div class="tiers">
+        <div class="tier reveal">
+          <h3>OPEN CLINIC</h3>
+          <div class="price">$45 <small>/ drop-in</small></div>
           <ul>
-            <li>Find tournaments near you</li>
-            <li>Get a world ranking of your own</li>
-            <li>Yes — your first event counts</li>
+            <li>2-hour group session, max 8 players</li>
+            <li>Flipper fundamentals &amp; catches</li>
+            <li>Guided play on 4 machines</li>
+            <li>Weekly, no commitment</li>
           </ul>
+          <a class="btn btn-line" href="#visit">Join a clinic</a>
         </div>
-        <div class="pillar reveal">
-          <div class="num">WATCH &amp; LEARN</div>
-          <h3>STREAMERS WE LOVE</h3>
-          <p>Channels we actually watch — dedicated people putting in real hours for the hobby. Go subscribe to them too.</p>
+
+        <div class="tier featured reveal">
+          <h3>GLASS-OFF INTENSIVE</h3>
+          <div class="price">$150 <small>/ 2-hr private</small></div>
           <ul>
-            <li>Tournament &amp; gameplay streams</li>
-            <li>Rules deep-dives &amp; tech talk</li>
-            <li>Full directory coming to this page</li>
+            <li>One-on-one with a Zahler</li>
+            <li>Glass-off drilling on your weak spots</li>
+            <li>Video review of your form</li>
+            <li>Personal skill-ladder progress card</li>
           </ul>
+          <a class="btn btn-fill" href="#visit">Book private</a>
         </div>
-        <div class="pillar reveal">
-          <div class="num">PLAY IN PERSON</div>
-          <h3>HOME ARCADES</h3>
-          <p>Partner venues that host Zahler training days — real machines, real coaching, all ages welcome.</p>
+
+        <div class="tier reveal">
+          <h3>CHAMPION TRACK</h3>
+          <div class="price">$395 <small>/ month</small></div>
           <ul>
-            <li>New York City — home base</li>
-            <li>Delaware — coming soon</li>
-            <li>Your city? <a href="mailto:hello@zahlerpinball.com?subject=Home%20arcade">Operators, get in touch</a></li>
+            <li>Weekly private + clinic access</li>
+            <li>Tournament prep &amp; rulesheet study</li>
+            <li>Monthly in-house bracket night</li>
+            <li>IFPA event corner-coaching</li>
           </ul>
+          <a class="btn btn-line" href="#visit">Apply</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
-  <section id="newsletter" class="signup">
+  <!-- VISIT -->
+  <section id="visit">
     <div class="wrap">
-      <div class="signup-box reveal">
-        <p class="eyebrow">The Newsletter</p>
-        <h2>JOIN PLAYER ONE'S INBOX</h2>
-        <p>Weekly tips, tournament secrets, new-game strategy before it hits the scene, interviews with champions — and first access to the Secret Tapes, the videos, and everything Pinball University.</p>
+      <p class="eyebrow reveal">Visit</p>
+      <h2 class="reveal">Inside a working arcade</h2>
+      <p class="lede reveal">Every lesson happens on real, tournament-maintained machines — classics through the newest Sterns — in the East Village, New York City.</p>
 
-        <!--
-          WIRING NOTE: Replace this form's JS handler with your email provider.
-          ConvertKit/Beehiiv/Mailchimp all give you a form action URL — set it as
-          <form action="YOUR_PROVIDER_URL" method="post"> and remove the demo handler below.
-        -->
-        <form id="signup-form" novalidate>
-          <div class="form-row">
-            <input type="email" id="email" name="email" placeholder="you@flipperskills.com" required aria-label="Email address">
-            <button class="btn btn-fill" type="submit">SIGN ME UP</button>
-          </div>
-        </form>
-        <div id="signup-msg">PLAYER 1 — YOU'RE ON THE LIST. SHOOT AGAIN.</div>
-
-        <div class="soon">
-          <span class="chip">COMING SOON ON PATREON:</span>
-          <span class="chip"><b>$5</b> PLAYER 1</span>
-          <span class="chip"><b>$15</b> TOURNAMENT CLASS</span>
-          <span class="chip"><b>$$</b> CHAMPION TRACK</span>
+      <div class="visit-box reveal">
+        <div>
+          <h3>ZAHLER PINBALL ACADEMY</h3>
+          <p>East Village, Manhattan<br>New York, NY</p>
+          <p>Walk-ins welcome for open play. Coaching sessions by booking. Bring quarters for luck — every machine is on free play.</p>
+          <a class="btn btn-fill" href="mailto:hello@example.com">Email to book</a>
         </div>
-
-        <p class="fine">No spam. No drains. Unsubscribe anytime.<br>Proceeds fund Jason's college tuition and the betterment of all mankind.</p>
+        <div>
+          <h3>HOURS</h3>
+          <ul class="hours">
+            <li><span>MON–THU</span><span>14:00 – 22:00</span></li>
+            <li><span>FRI</span><span>14:00 – 24:00</span></li>
+            <li><span>SAT</span><span>12:00 – 24:00</span></li>
+            <li><span>SUN</span><span>12:00 – 21:00</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -459,11 +435,11 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <footer>
   <div class="wrap frow">
-    <div>© 2026 Zahler Pinball · zahlerpinball.com</div>
-    <div class="mono">GAME OVER? SHOOT AGAIN.</div>
+    <div>© 2026 Zahler Pinball Academy · East Village, NYC</div>
+    <div class="mono">PLAYER 1 — GAME OVER? SHOOT AGAIN.</div>
   </div>
-  <div class="wrap" style="margin-top:14px;font-size:12px;opacity:.75">
-    Jason Zahler action figure sold separately. (Not really.) (Yet.) · Proud supporters of the IFPA and competitive pinball everywhere. · A portion of proceeds will support pinball charity programs.
+  <div class="wrap" style="margin-top:14px;font-size:12px;opacity:.7">
+    Concept site. Not an official venture of, or endorsed by, Jason or Steve Zahler. Rankings &amp; titles per IFPA public records, June 2026.
   </div>
 </footer>
 
@@ -475,24 +451,26 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   const COLS = 128, ROWS = 32;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // offscreen buffer at native DMD resolution
   const buf = document.createElement('canvas');
   buf.width = COLS; buf.height = ROWS;
   const bctx = buf.getContext('2d', { willReadFrequently:true });
 
-  const MSG = '  JASON ZAHLER \u2605 3X IFPA WORLD CHAMPION \u2605 THE THREEPEAT \u2605 WORLD RANKED #1 \u2605 COACH: DAD \u2605 EVERYTHING WE KNOW, YOU WILL LEARN \u2605 THE SECRET TAPES: COMING SOON \u2605';
+  const MSG = '  JASON ZAHLER \u2605 WORLD RANKED #1 \u2605 5X MAJOR CHAMPION \u2605 IFPA21 WORLD CHAMP \u2605 COACH: DAD \u2605 GLASS OFF. GAME ON. \u2605 MODERN PINBALL NYC \u2605';
 
   bctx.font = 'bold 22px "Share Tech Mono", monospace';
   bctx.textBaseline = 'middle';
-  let msgWidth = Math.ceil(bctx.measureText(MSG).width);
+  const msgWidth = Math.ceil(bctx.measureText(MSG).width);
 
   let scrollX = 0;
-  const SPEED = 1.1;
+  const SPEED = 1.1; // buffer px per frame
 
   function drawBuffer(){
     bctx.clearRect(0,0,COLS,ROWS);
     bctx.fillStyle = '#fff';
     bctx.font = 'bold 22px "Share Tech Mono", monospace';
     bctx.textBaseline = 'middle';
+    // draw twice for seamless wrap
     bctx.fillText(MSG, -scrollX, ROWS/2 + 1);
     bctx.fillText(MSG, -scrollX + msgWidth, ROWS/2 + 1);
   }
@@ -500,6 +478,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   function render(){
     drawBuffer();
     const img = bctx.getImageData(0,0,COLS,ROWS).data;
+
     const W = canvas.width, H = canvas.height;
     const cw = W/COLS, ch = H/ROWS;
     const r = Math.min(cw,ch) * 0.34;
@@ -509,7 +488,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
     for(let y=0;y<ROWS;y++){
       for(let x=0;x<COLS;x++){
-        const a = img[(y*COLS+x)*4+3] / 255;
+        const a = img[(y*COLS+x)*4+3] / 255; // alpha as brightness
         const cx = x*cw + cw/2, cy = y*ch + ch/2;
         ctx.beginPath();
         ctx.arc(cx,cy,r,0,6.2832);
@@ -517,7 +496,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           const b = Math.min(1, a*1.2);
           ctx.fillStyle = 'rgb(' + Math.round(255*b) + ',' + Math.round(174*b) + ',' + Math.round(20*b) + ')';
         } else {
-          ctx.fillStyle = '#241302';
+          ctx.fillStyle = '#241302'; // unlit dot
         }
         ctx.fill();
       }
@@ -530,30 +509,21 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     requestAnimationFrame(tick);
   }
 
+  // ensure font is loaded before measuring/rendering
   function start(){
     bctx.font = 'bold 22px "Share Tech Mono", monospace';
-    msgWidth = Math.ceil(bctx.measureText(MSG).width);
-    if(reduced){ scrollX = 0; render(); }
-    else { requestAnimationFrame(tick); }
-  }
-  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(start); }
-  else { start(); }
-})();
-
-/* ===== newsletter form (demo handler — see WIRING NOTE above) ===== */
-(function(){
-  const form = document.getElementById('signup-form');
-  const msg = document.getElementById('signup-msg');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    const email = document.getElementById('email');
-    if(!email.value || !email.value.includes('@')){
-      email.focus();
-      return;
+    if(reduced){
+      scrollX = 0;
+      render();           // static frame
+    } else {
+      requestAnimationFrame(tick);
     }
-    form.style.display = 'none';
-    msg.style.display = 'block';
-  });
+  }
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(start);
+  } else {
+    start();
+  }
 })();
 
 /* ===== scroll reveal ===== */
