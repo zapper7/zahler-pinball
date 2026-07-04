@@ -119,6 +119,8 @@ h2{font-size:clamp(25px,4.4vw,42px);margin-bottom:18px}
 }
 .agecall h3{font-size:17px;margin-bottom:8px;color:var(--amber)}
 .agecall p{color:var(--steel);font-size:15.5px}
+.agecall p + p{margin-top:10px}
+.agecall p b{color:var(--cream)}
 
 /* university pillars */
 .method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -173,12 +175,70 @@ h2{font-size:clamp(25px,4.4vw,42px);margin-bottom:18px}
 }
 .form-row input::placeholder{color:#6b5536}
 .fine{font-family:'Share Tech Mono',monospace;font-size:12px;color:#6b5536;margin-top:18px;letter-spacing:.06em}
-#signup-msg{display:none;color:var(--amber);font-family:'Bungee',cursive;font-size:16px;margin-top:18px}
+.sf-success{display:none;color:var(--amber);font-family:'Bungee',cursive;margin-top:18px}
 
 /* patreon teaser */
 .soon{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px}
 .chip{font-family:'Share Tech Mono',monospace;font-size:12.5px;letter-spacing:.1em;color:var(--steel);border:1px solid #3b2d1d;border-radius:999px;padding:7px 15px}
 .chip b{color:var(--amber);font-weight:400}
+
+
+/* scoreform (from fable) */
+.scoreform{
+  max-width:560px;margin:44px auto 0;
+  border:2px solid #3a2c1c;border-radius:10px;
+  background:linear-gradient(180deg,#241a10,#160f08);
+  box-shadow:0 0 0 5px #0c0805, 0 18px 50px rgba(0,0,0,.55), inset 0 1px 0 #4a3a26;
+  padding:26px 26px 22px;text-align:center;
+}
+.scoreform .label{
+  font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.32em;
+  text-transform:uppercase;color:#6b5536;margin-bottom:14px;
+}
+.scoreform .label b{color:#ffe146;font-weight:400}
+.sf-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.sf-row input{
+  flex:1;min-width:220px;
+  background:#0a0500;border:2px solid #4a3a26;border-radius:6px;
+  color:#ffe146;font-family:'Share Tech Mono',monospace;font-size:17px;
+  padding:15px 16px;letter-spacing:.04em;caret-color:#ffe146;
+}
+.sf-row input::placeholder{color:#6b5536}
+.sf-row button{
+  font-family:'Bungee',cursive;font-size:15px;letter-spacing:.03em;cursor:pointer;
+  background:var(--amber);color:var(--ink);border:2px solid var(--amber);
+  border-radius:6px;padding:15px 24px;box-shadow:0 5px 0 #8a5e00;
+  transition:transform .12s ease, box-shadow .12s ease;
+  animation:sfpulse 2.4s ease-in-out infinite;
+}
+.sf-row button:active{transform:translateY(3px);box-shadow:0 2px 0 #8a5e00}
+@keyframes sfpulse{
+  0%,100%{box-shadow:0 5px 0 #8a5e00, 0 0 0 rgba(255,174,0,0)}
+  50%{box-shadow:0 5px 0 #8a5e00, 0 0 26px rgba(255,174,0,.35)}
+}
+.scoreform .fine{
+  font-family:'Share Tech Mono',monospace;font-size:12px;color:#6b5536;
+  margin-top:16px;letter-spacing:.05em;line-height:1.7;
+}
+.sf-success{display:none;font-family:'Bungee',cursive;color:#ffe146;font-size:17px;padding:14px 0 6px}
+
+/* secrets list (from fable) */
+.secrets{list-style:none;max-width:720px}
+.secrets li{
+  display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;
+  padding:18px 0;border-bottom:1px dashed #3b2d1d;
+}
+.secrets .tag{font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--amber);white-space:nowrap;padding-top:2px}
+.secrets .what{font-size:17.5px;color:var(--cream)}
+.secrets .what small{display:block;color:var(--steel);font-size:15.5px;margin-top:3px}
+
+/* fair questions (from fable) */
+.qa{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:680px){.qa{grid-template-columns:1fr}}
+.qa > div{background:var(--panel);border:2px solid #33271a;border-radius:8px;padding:22px 22px}
+.qa h3{font-size:15px;margin-bottom:8px;color:var(--cream)}
+.qa p{color:var(--steel);font-size:15.5px}
+.qa p b{color:var(--amber)}
 
 /* footer */
 footer{border-top:1px solid #2c2115;padding:42px 0 60px;color:#6b5d4c;font-size:13.5px}
@@ -190,6 +250,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   .ticker-inner{animation:none}
+  .sf-row button{animation:none}
   .reveal{opacity:1;transform:none;transition:none}
 }
 </style>
@@ -203,7 +264,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       <a href="#story">The Story</a>
       <a href="#university">Pinball U</a>
       <a href="#tapes" class="hot">Secret Tapes</a>
-      <a href="#live">Live</a>
+      <a href="#friends">Friends</a>
       <a href="#newsletter">Newsletter</a>
     </nav>
   </div>
@@ -216,7 +277,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <div class="wrap">
       <div class="backbox">
         <canvas id="dmd" width="1280" height="320" aria-label="Dot matrix display reading: Jason Zahler, 3-time IFPA World Champion, threepeat, coached by dad"></canvas>
-        <div class="dmd-cap">128 × 32 &nbsp;Thrice 2026 Mode &nbsp;·&nbsp; attract mode</div>
+        <div class="dmd-cap">128 × 32 &nbsp;plasma display &nbsp;·&nbsp; attract mode</div>
       </div>
 
       <h1>EVERYTHING WE KNOW ABOUT PINBALL, <span class="hl">YOU'RE GOING TO LEARN.</span></h1>
@@ -242,19 +303,19 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   <section id="story">
     <div class="wrap">
       <p class="eyebrow reveal">The Story</p>
-      <h2 class="reveal">The most decorated father-son duo in the history of organized flipping</h2>
+      <h2 class="reveal">A dad, a kid, and three straight World Championships</h2>
       <p class="lede reveal">A dad lifts the glass off a pinball machine and starts placing the ball by hand for his kid. Years later, that kid is the <b>#1-ranked player on Earth</b> and just won his <b>third consecutive World Championship</b>. Players keep asking us how. So we're finally writing it all down.</p>
 
       <div class="duo">
         <article class="coach reveal" data-player="PLAYER 1">
           <h3>Jason Zahler</h3>
           <p class="role">World #1 · 3× World Champion</p>
-          <p>Playing since age three, competing since childhood, studying nutrition in college, and now the only player ever to threepeat the IFPA World Championship. He'll show you the saves that look like magic — and prove they aren't.</p>
+          <p>Playing since age two and a half, competing since childhood, studying nutrition and exercise science in college, and now the only player ever to threepeat the IFPA World Championship. He'll show you the saves that look like magic — and prove they aren't.</p>
           <ul class="statline">
             <li><span>IFPA World Championship</span><span>3× IN A ROW</span></li>
             <li><span>IFPA World Ranking</span><span>#1</span></li>
-            <li><span>Pinburgh 2024</span><span>WINNER</span></li>
-            <li><span>Silverball Rumble</span><span>BACK-TO-BACK</span></li>
+            <li><span>Pinburgh</span><span>2024 &amp; 2025 · TWO-PEAT</span></li>
+            <li><span>Pintastic Silverball Rumble</span><span>2022–25 · 4× BACK-TO-BACK</span></li>
             <li><span>First titles</span><span>NJ STATE · PAPA JRS</span></li>
           </ul>
         </article>
@@ -262,20 +323,21 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <article class="coach reveal" data-player="PLAYER 2">
           <h3>Steve Zahler</h3>
           <p class="role">Head Coach · The Dad</p>
-          <p>Taekwondo guy, arcade owner, and the architect of the whole system — glass-off drills, warm-ups, sleep schedules, the works. He coached Jason the hard way and will coach you the same way. Also: occasionally records his son in secret.</p>
+          <p>Taekwondo guy, owner of Modern Pinball NYC, and the architect of the whole system — glass-off drills, warm-ups, sleep schedules, the works. Once did a seven-minute segment on FOX's <b>Good Day New York</b>, then caught a flight to Germany for the IFPA10 World Championship. He coached Jason the hard way and will coach you the same way. Also: occasionally records his son in secret.</p>
           <ul class="statline">
             <li><span>Started competing</span><span>AGE 41</span></li>
             <li><span>PAPA A Division finals</span><span>MONTHS LATER</span></li>
             <li><span>Peak world ranking</span><span>#19 · AT AGE 55</span></li>
-            <li><span>Coaching Jason since</span><span>AGE 3</span></li>
-            <li><span>Training philosophy</span><span>GLASS OFF</span></li>
+            <li><span>NJ State Champion</span><span>2013</span></li>
+            <li><span>Ranked #1 · NY &amp; NJ</span><span>2012 &amp; 2013</span></li>
           </ul>
         </article>
       </div>
 
       <div class="agecall reveal">
         <h3>AGE DOESN'T MATTER</h3>
-        <p>Steve started competitive pinball at 41 and hit his highest world ranking 14 years later — beating players half, even a quarter, his age. Whatever your age, you're not too late. You're right on time.</p>
+        <p>It cuts both ways. Jason played his first tournament at <b>age 7</b> and won his first at <b>age 9</b> — against players multiple times his age. (That same year, he and his sister Maxine were featured on NBC's <b>TODAY Show</b> with Lester Holt. The grown-ups he beat were not.)</p>
+        <p>Meanwhile, Steve started competitive pinball at 41 and hit his highest world ranking 14 years later — beating players half, even a quarter, his age. Whatever your age, you're not too late. You're right on time.</p>
       </div>
     </div>
   </section>
@@ -285,11 +347,10 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <div class="wrap">
       <p class="eyebrow reveal">Pinball University with Jason &amp; Steve</p>
       <h2 class="reveal">What you're going to learn</h2>
-      <p class="lede reveal">Not just flipper tricks. The complete system — the same one that built a world champion — in three tracks. Go as fast or slow as you want.</p>
+      <p class="lede reveal">Not just flipper tricks. The complete system — the same one that built a world champion.</p>
 
       <div class="method-grid">
         <div class="pillar reveal">
-          <div class="num">TRACK 01 · THE SKILLS</div>
           <h3>FLIPPERS &amp; PHYSICS</h3>
           <p>Master the ball itself, on any machine — EM, solid state, or modern.</p>
           <ul>
@@ -300,7 +361,6 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           </ul>
         </div>
         <div class="pillar reveal">
-          <div class="num">TRACK 02 · THE STRATEGY</div>
           <h3>TOURNAMENT CRAFT</h3>
           <p>How Jason qualifies #1 — and how to survive every format.</p>
           <ul>
@@ -311,7 +371,6 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           </ul>
         </div>
         <div class="pillar reveal">
-          <div class="num">TRACK 03 · THE SYSTEM</div>
           <h3>BODY &amp; BRAIN</h3>
           <p>The part nobody else teaches. Pinball is a sport — train like it.</p>
           <ul>
@@ -321,6 +380,69 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
             <li>Energy management for 11-hour tournament days</li>
           </ul>
         </div>
+      </div>
+
+      <p class="eyebrow reveal" style="margin-top:64px">What lands in your inbox</p>
+      <h2 class="reveal">Things you'll wish someone had told you years ago</h2>
+      <p class="lede reveal">Not vague advice. The specific stuff — the moves, the routines, the tournament habits — that took Jason and Steve <b>thousands of games</b> to figure out so you don't have to.</p>
+
+      <ul class="secrets">
+        <li class="reveal">
+          <span class="tag">SAVE №1</span>
+          <span class="what">The save that looks like magic
+            <small>Most balls headed straight down the middle only <i>look</i> that way. Learn to see the lean — and what your hands should already be doing.</small>
+          </span>
+        </li>
+        <li class="reveal">
+          <span class="tag">VISION</span>
+          <span class="what">Read the ball before it reaches your flippers
+            <small>Knowing the future has its rewards. Rubber types, bounce angles, and where the ball is going next.</small>
+          </span>
+        </li>
+        <li class="reveal">
+          <span class="tag">BODY</span>
+          <span class="what">The Perfect Pinball Warm-up
+            <small>Taekwondo-derived, takes minutes, needs no equipment. Steve and Jason do it before every tournament day.</small>
+          </span>
+        </li>
+        <li class="reveal">
+          <span class="tag">BRAIN</span>
+          <span class="what">The sleep pattern that peaks you at finals
+            <small>Most of this game is mental. Sleep, caffeine, hydration, and focus — timed so you're sharpest when it counts.</small>
+          </span>
+        </li>
+        <li class="reveal">
+          <span class="tag">STRATEGY</span>
+          <span class="what">How Jason qualifies #1 — again and again
+            <small>Entry management, game selection, and when to walk away. (A lot of it is "situational." He'll explain that too.)</small>
+          </span>
+        </li>
+        <li class="reveal">
+          <span class="tag">NERVE</span>
+          <span class="what">Playing calm when everything is loud
+            <small>Breathing, tilt discipline, handling pressure — and yes, handling haters. Play calm and carry on.</small>
+          </span>
+        </li>
+        <li class="reveal">
+          <span class="tag">NEW ON THE FLOOR</span>
+          <span class="what">Reviews of every new machine, from every manufacturer
+            <small>Rules breakdowns and early strategy before you waste your first game guessing. Stern, JJP, Chicago Gaming, American Pinball, Haggis — all of it.</small>
+          </span>
+        </li>
+      </ul>
+
+      <!-- score-entry signup (from fable) -->
+      <div class="scoreform reveal">
+        <p class="label"><b>PLAYER 1</b> &nbsp;·&nbsp; ENTER EMAIL TO BEGIN TRAINING</p>
+        <!-- WIRING NOTE: point this form at your email provider's action URL -->
+        <form class="js-signup-form" novalidate>
+          <div class="sf-row">
+            <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address" autocomplete="email">
+            <button type="submit">SEND ME THE SECRETS</button>
+          </div>
+        </form>
+        <div class="sf-success">PLAYER 1 — YOU'RE ON THE LIST. SHOOT AGAIN.</div>
+        <p class="fine">Free forever. No spam. Unsubscribe anytime.</p>
       </div>
     </div>
   </section>
@@ -345,37 +467,28 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     </div>
   </section>
 
-  <!-- LIVE -->
-  <section id="live">
+  <!-- FAIR QUESTIONS -->
+  <section id="questions">
     <div class="wrap">
-      <p class="eyebrow reveal">Catch Us Live</p>
-      <h2 class="reveal">The Zahler Tour begins</h2>
-      <p class="lede reveal">Lessons, meet-ups, and training days at arcades and shows across the country. See us at a tournament? <b>Come say hi and ask us anything — member or not, we're happy to help.</b></p>
+      <p class="eyebrow reveal">Fair questions</p>
+      <div class="qa">
+        <div class="reveal">
+          <h3>Is it actually free?</h3>
+          <p><b>Yes.</b> The newsletter is free, forever. Some day there may be more — courses, coaching, an emergency pinball hotline (really) — but the emails stay free.</p>
+        </div>
+        <div class="reveal">
+          <h3>I'm a beginner. Too early?</h3>
+          <p><b>No.</b> The fundamentals are where champions are made — Steve coached Jason from age two and a half. If you can reach the flippers, you're ready.</p>
+        </div>
+        <div class="reveal">
+          <h3>I'm already ranked. Too late?</h3>
+          <p><b>Also no.</b> Tournament craft, qualification strategy, energy management — this is the layer above flipper skills. It's the part most ranked players never train.</p>
+        </div>
+      </div>
 
-      <ul class="shows">
-        <li class="reveal">
-          <span class="when">2026</span>
-          <span class="what">PINTASTIC NEW ENGLAND</span>
-          <span class="where">Sturbridge, MA — details soon</span>
-        </li>
-        <li class="reveal">
-          <span class="when">2026</span>
-          <span class="what">PINBALL EXPO</span>
-          <span class="where">Chicago, IL — details soon</span>
-        </li>
-        <li class="reveal">
-          <span class="when">2027</span>
-          <span class="what">TEXAS PINBALL FESTIVAL</span>
-          <span class="where">Frisco, TX — details soon</span>
-        </li>
-        <li class="reveal">
-          <span class="when">ONGOING</span>
-          <span class="what">ZAHLER TRAINING DAYS</span>
-          <span class="where">At partner arcades nationwide — hosted lessons, glass off, all ages</span>
-        </li>
-      </ul>
-
-      <p class="lede reveal" style="margin-top:38px;margin-bottom:0">Own an arcade? <a href="mailto:hello@zahlerpinball.com?subject=Training%20day%20at%20our%20arcade">Host a Zahler training day</a> — your venue, your ticketing, our coaching.</p>
+      <p class="eyebrow reveal" style="margin-top:72px">One more time, for the players in the back</p>
+      <h2 class="reveal">Everything we know about pinball, you're going to learn.</h2>
+      <p class="lede reveal" style="margin-bottom:0">No fluff, no fixed schedule — just the secrets of a three-time world champion and his coach dad. Free.</p>
     </div>
   </section>
 
@@ -385,29 +498,83 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       <div class="signup-box reveal">
         <p class="eyebrow">The Newsletter</p>
         <h2>JOIN PLAYER ONE'S INBOX</h2>
-        <p>Weekly tips, tournament secrets, new-game strategy before it hits the scene, interviews with champions — and first access to the Secret Tapes, the videos, and everything Pinball University.</p>
+        <p>Straight-shooting tips, tournament secrets, new-game strategy before it hits the scene, interviews with champions — and first access to the Secret Tapes, the videos, and everything Pinball University.</p>
 
         <!--
           WIRING NOTE: Replace this form's JS handler with your email provider.
           ConvertKit/Beehiiv/Mailchimp all give you a form action URL — set it as
           <form action="YOUR_PROVIDER_URL" method="post"> and remove the demo handler below.
         -->
-        <form id="signup-form" novalidate>
+        <form class="js-signup-form" novalidate>
           <div class="form-row">
-            <input type="email" id="email" name="email" placeholder="you@flipperskills.com" required aria-label="Email address">
+            <input type="email" name="email" placeholder="you@flipperskills.com" required aria-label="Email address">
             <button class="btn btn-fill" type="submit">SIGN ME UP</button>
           </div>
         </form>
-        <div id="signup-msg">PLAYER 1 — YOU'RE ON THE LIST. SHOOT AGAIN.</div>
-
-        <div class="soon">
-          <span class="chip">COMING SOON ON PATREON:</span>
-          <span class="chip"><b>$5</b> PLAYER 1</span>
-          <span class="chip"><b>$15</b> TOURNAMENT CLASS</span>
-          <span class="chip"><b>$$</b> CHAMPION TRACK</span>
-        </div>
+        <div class="sf-success" style="font-size:16px">PLAYER 1 — YOU'RE ON THE LIST. SHOOT AGAIN.</div>
 
         <p class="fine">No spam. No drains. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRIENDS / RESOURCES -->
+  <section id="friends" style="background:#0e0a06">
+    <div class="wrap">
+      <p class="eyebrow reveal">Friends of the Flipper</p>
+      <h2 class="reveal">We promote the people who make pinball great</h2>
+      <p class="lede reveal">Pinball gave us everything. The least we can do is point you toward the organizations, streamers, and arcades keeping it alive.</p>
+
+      <div class="method-grid">
+        <div class="pillar reveal">
+          <div class="num">PLAY COMPETITIVELY</div>
+          <h3>THE IFPA</h3>
+          <p>The International Flipper Pinball Association runs the rankings, the World Championship, and thousands of events worldwide. It's where our whole story happened.</p>
+          <ul>
+            <li>Find tournaments near you</li>
+            <li>Get a world ranking of your own</li>
+            <li>Yes — your first event counts</li>
+          </ul>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">WATCH &amp; LEARN</div>
+          <h3>STREAMERS WE LOVE</h3>
+          <p>Channels we actually watch — dedicated people putting in real hours for the hobby. Go subscribe to them too.</p>
+          <ul>
+            <li>Tournament &amp; gameplay streams</li>
+            <li>Rules deep-dives &amp; tech talk</li>
+            <li>Full directory coming to this page</li>
+          </ul>
+        </div>
+        <div class="pillar reveal">
+          <div class="num">PLAY IN PERSON</div>
+          <h3>PLACES TO PLAY</h3>
+          <p>Partner venues that host Zahler training days — real machines, real coaching, all ages welcome.</p>
+          <ul>
+            <li>New Jersey — home base</li>
+            <li>New York City</li>
+            <li>Delaware — coming soon</li>
+            <li>Your city? <a href="mailto:hello@zahlerpinball.com?subject=Home%20arcade">Operators, get in touch</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL SIGNUP -->
+  <section id="final-call">
+    <div class="wrap">
+      <div class="scoreform reveal" style="margin-top:0">
+        <p class="label"><b>FINAL BALL</b> &nbsp;·&nbsp; DON'T LET THIS ONE DRAIN</p>
+        <!-- WIRING NOTE: point this form at your email provider's action URL -->
+        <form class="js-signup-form" novalidate>
+          <div class="sf-row">
+            <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address" autocomplete="email">
+            <button type="submit">SIGN ME UP</button>
+          </div>
+        </form>
+        <div class="sf-success">PLAYER 1 — YOU'RE ON THE LIST. SHOOT AGAIN.</div>
+        <p class="fine">Free forever. No spam. Unsubscribe anytime.</p>
       </div>
     </div>
   </section>
@@ -420,7 +587,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <div class="mono">GAME OVER? SHOOT AGAIN.</div>
   </div>
   <div class="wrap" style="margin-top:14px;font-size:12px;opacity:.75">
-    Jason Zahler action figure sold separately. (Not really.) (Yet.) · A portion of proceeds will support pinball charity programs.
+    Jason Zahler action figure sold separately. (Not really.) (Yet.) · Proud supporters of the IFPA and competitive pinball everywhere. · A portion of proceeds will support pinball charity programs.
   </div>
 </footer>
 
@@ -497,19 +664,17 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   else { start(); }
 })();
 
-/* ===== newsletter form (demo handler — see WIRING NOTE above) ===== */
+/* ===== newsletter forms (demo handler — see WIRING NOTEs) ===== */
 (function(){
-  const form = document.getElementById('signup-form');
-  const msg = document.getElementById('signup-msg');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    const email = document.getElementById('email');
-    if(!email.value || !email.value.includes('@')){
-      email.focus();
-      return;
-    }
-    form.style.display = 'none';
-    msg.style.display = 'block';
+  document.querySelectorAll('.js-signup-form').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = form.querySelector('input[type=email]');
+      if(!email.value || !email.value.includes('@')){ email.focus(); return; }
+      const ok = form.parentElement.querySelector('.sf-success');
+      form.style.display = 'none';
+      if(ok) ok.style.display = 'block';
+    });
   });
 })();
 
