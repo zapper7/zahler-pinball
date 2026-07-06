@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Zahler Pinball — Everything we know, you're going to learn.</title>
 <meta name="description" content="Pinball training from the 3× IFPA World Champion and the coach-dad who built him. Skills, strategy, and the athlete's system. Newsletter launching now.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
   --maxw:1080px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{
   background:var(--ink);
   color:var(--cream);
@@ -28,6 +28,8 @@ body{
   font-size:17px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  touch-action:pan-y;
 }
 ::selection{background:var(--amber);color:var(--ink)}
 a{color:var(--amber)}
@@ -39,7 +41,7 @@ h1,h2,h3,.display{font-family:'Bungee',cursive;font-weight:400;line-height:1.08;
 
 /* header */
 header{position:sticky;top:0;z-index:50;background:rgba(19,14,9,.92);backdrop-filter:blur(8px);border-bottom:1px solid #2c2115}
-.nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px;position:relative}
 .logo{font-family:'Bungee',cursive;font-size:15px;color:var(--cream);text-decoration:none;display:flex;align-items:center;gap:10px}
 .logo .ball{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#b9b9b9 45%,#5e5e5e);flex:none}
 .logo em{font-style:normal;color:var(--amber)}
@@ -47,7 +49,20 @@ header{position:sticky;top:0;z-index:50;background:rgba(19,14,9,.92);backdrop-fi
 .navlinks a{font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);text-decoration:none}
 .navlinks a:hover{color:var(--amber)}
 .navlinks a.hot{color:var(--red)}
-@media(max-width:760px){.navlinks{display:none}}
+.navtoggle{display:none;flex:none;width:38px;height:38px;border:1px solid #3a2c1c;border-radius:6px;background:transparent;cursor:pointer;position:relative}
+.navtoggle span{position:absolute;left:9px;right:9px;top:18px;height:2px;background:var(--cream);transition:transform .2s ease,opacity .2s ease}
+.navtoggle span::before,.navtoggle span::after{content:"";position:absolute;left:0;right:0;height:2px;background:var(--cream);transition:transform .2s ease}
+.navtoggle span::before{top:-7px}
+.navtoggle span::after{top:7px}
+.navtoggle[aria-expanded="true"] span{background:transparent}
+.navtoggle[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:760px){
+  .navtoggle{display:block}
+  .navlinks{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:#130e09;border-bottom:1px solid #2c2115}
+  .navlinks.open{display:flex}
+  .navlinks a{padding:16px 24px;border-top:1px solid #2c2115}
+}
 
 /* hero */
 .hero{padding:56px 0 0}
@@ -260,7 +275,8 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <header>
   <div class="wrap nav">
     <a class="logo" href="#top"><span class="ball"></span>ZAHLER <em>PINBALL</em></a>
-    <nav class="navlinks">
+    <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks" aria-label="Toggle menu"><span></span></button>
+    <nav class="navlinks" id="navlinks">
       <a href="#story">The Story</a>
       <a href="#university">Pinball U</a>
       <a href="#tapes" class="hot">Secret Tapes</a>
@@ -662,6 +678,26 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   }
   if(document.fonts && document.fonts.ready){ document.fonts.ready.then(start); }
   else { start(); }
+})();
+
+/* ===== mobile nav toggle ===== */
+(function(){
+  const btn = document.getElementById('navtoggle');
+  const nav = document.getElementById('navlinks');
+  if(!btn || !nav) return;
+
+  function closeNav(){
+    nav.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+  }
+  function toggleNav(){
+    const open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  btn.addEventListener('click', toggleNav);
+  nav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeNav); });
+  window.addEventListener('resize', function(){ if(window.innerWidth > 760) closeNav(); });
 })();
 
 /* ===== newsletter forms (demo handler — see WIRING NOTEs) ===== */
