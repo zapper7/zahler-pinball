@@ -29,7 +29,6 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
-  touch-action:pan-y;
 }
 ::selection{background:var(--amber);color:var(--ink)}
 a{color:var(--amber)}
@@ -79,7 +78,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(19,14,9,.92);backdrop-fi
 }
 .backbox::before{left:18px}
 .backbox::after{right:18px}
-#dmd{display:block;width:100%;height:auto;border-radius:4px;background:#000;box-shadow:inset 0 0 24px rgba(0,0,0,.9), 0 0 30px rgba(255,174,0,.10)}
+#dmd{display:block;width:100%;height:auto;border-radius:4px;background:#000;box-shadow:inset 0 0 24px rgba(0,0,0,.9), 0 0 30px rgba(255,174,0,.10);touch-action:pan-y}
 .dmd-cap{text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.3em;color:#6b5536;margin-top:10px;text-transform:uppercase}
 .hero h1{font-size:clamp(28px,5.6vw,58px);text-align:center;margin:44px auto 18px;max-width:900px}
 .hero h1 .hl{color:var(--amber);text-shadow:0 0 26px rgba(255,174,0,.45)}
