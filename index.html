@@ -20,7 +20,8 @@
   --maxw:1080px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:hidden}
+html{scroll-behavior:smooth}
+.page{overflow-x:hidden}
 body{
   background:var(--ink);
   color:var(--cream);
@@ -28,7 +29,6 @@ body{
   font-size:17px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
 }
 ::selection{background:var(--amber);color:var(--ink)}
 a{color:var(--amber)}
@@ -79,7 +79,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(19,14,9,.92);backdrop-fi
 .backbox::before{left:18px}
 .backbox::after{right:18px}
 #dmd{display:block;width:100%;height:auto;border-radius:4px;background:#000;box-shadow:inset 0 0 24px rgba(0,0,0,.9), 0 0 30px rgba(255,174,0,.10);touch-action:pan-y}
-.dmd-cap{text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.3em;color:#6b5536;margin-top:10px;text-transform:uppercase}
+.dmd-cap{text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.3em;color:#6b5536;margin-top:28px;text-transform:uppercase}
 .hero h1{font-size:clamp(28px,5.6vw,58px);text-align:center;margin:44px auto 18px;max-width:900px}
 .hero h1 .hl{color:var(--amber);text-shadow:0 0 26px rgba(255,174,0,.45)}
 .hero .sub{max-width:640px;margin:0 auto;text-align:center;color:var(--steel);font-size:18px}
@@ -285,6 +285,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </div>
 </header>
 
+<div class="page">
 <main id="top">
 
   <!-- HERO -->
@@ -292,11 +293,11 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <div class="wrap">
       <div class="backbox">
         <canvas id="dmd" width="1280" height="320" aria-label="Dot matrix display reading: Jason Zahler, 3-time IFPA World Champion, threepeat, coached by dad"></canvas>
-        <div class="dmd-cap">128 × 32 &nbsp;plasma display &nbsp;·&nbsp; attract mode</div>
+        <div class="dmd-cap">attract mode</div>
       </div>
 
       <h1>EVERYTHING WE KNOW ABOUT PINBALL, <span class="hl">YOU'RE GOING TO LEARN.</span></h1>
-      <p class="sub">Training, secrets, and the full athlete's system from <b>Jason Zahler</b> — three-time IFPA World Champion, the threepeat — and <b>Steve Zahler</b>, the coach-dad who built him.</p>
+      <p class="sub">Training, secrets, and the full athlete's system from <b>Jason Zahler</b>, three-time IFPA World Champion, the threepeat, and <b>Steve Zahler</b>, the coach-dad who built him.</p>
 
       <span class="badge">★ As seen absolutely everywhere (soon) ★</span>
 
@@ -325,7 +326,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <article class="coach reveal" data-player="PLAYER 1">
           <h3>Jason Zahler</h3>
           <p class="role">World #1 · 3× World Champion</p>
-          <p>Playing since age two and a half, competing since childhood, studying nutrition and exercise science in college, and now the only player ever to threepeat the IFPA World Championship. He'll show you the saves that look like magic — and prove they aren't.</p>
+          <p>Playing since age two and a half, competing since childhood, studying nutrition and exercise science in college, and now the only player to threepeat the IFPA World Championship. He'll show you the saves that look like magic, and prove they aren't. Still hasn't beaten his dad at PAC-MAN (some records take longer to threepeat).</p>
           <ul class="statline">
             <li><span>IFPA World Championship</span><span>3× IN A ROW</span></li>
             <li><span>IFPA World Ranking</span><span>#1</span></li>
@@ -338,7 +339,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <article class="coach reveal" data-player="PLAYER 2">
           <h3>Steve Zahler</h3>
           <p class="role">Head Coach · The Dad</p>
-          <p>Taekwondo guy, owner of Modern Pinball NYC. Glass-off drills, warm-ups, sleep schedules — he coached Jason the hard way and will coach you the same way. Once did seven minutes on FOX's <b>Good Day New York</b>, then caught a flight to Germany for IFPA10.</p>
+          <p>Taekwondo guy, owner of Modern Pinball NYC. Glass-off drills, warm-ups, sleep schedules: he coached Jason like a taekwondo drill sergeant, and now puts the same regimen in your inbox. Once did seven minutes on FOX's <b>Good Day New York</b>, then caught a flight to Germany for IFPA10.</p>
           <ul class="statline">
             <li><span>Started competing</span><span>AGE 41</span></li>
             <li><span>PAPA A Division finals</span><span>MONTHS LATER</span></li>
@@ -391,7 +392,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           <ul>
             <li>The Perfect Pinball Warm-up (taekwondo-derived, no gym)</li>
             <li>The Pinball Diet, hydration &amp; the sleep pattern that peaks at finals</li>
-            <li>The Pinball Mindset: zen, breathing, handling haters</li>
+            <li>The Pinball Mindset: zen, breathing, staying calm under pressure</li>
             <li>Energy management for 11-hour tournament days</li>
           </ul>
         </div>
@@ -399,7 +400,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
       <p class="eyebrow reveal" style="margin-top:64px">What lands in your inbox</p>
       <h2 class="reveal">Things you'll wish someone had told you years ago</h2>
-      <p class="lede reveal">Not vague advice. The specific stuff — the moves, the routines, the tournament habits — that took Jason and Steve <b>thousands of games</b> to figure out so you don't have to.</p>
+      <p class="lede reveal">Not vague advice. The specific stuff (the moves, the routines, the tournament habits) that took Jason and Steve <b>thousands of games</b> to figure out so you don't have to.</p>
 
       <ul class="secrets">
         <li class="reveal">
@@ -435,7 +436,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <li class="reveal">
           <span class="tag">NERVE</span>
           <span class="what">Playing calm when everything is loud
-            <small>Breathing, tilt discipline, handling pressure — and yes, handling haters. Play calm and carry on.</small>
+            <small>Breathing, tilt discipline, handling pressure. Play calm and carry on.</small>
           </span>
         </li>
         <li class="reveal">
@@ -489,15 +490,15 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       <div class="qa">
         <div class="reveal">
           <h3>Is it actually free?</h3>
-          <p><b>Yes.</b> The newsletter is free, forever. Some day there may be more — courses, coaching, an emergency pinball hotline (really) — but the emails stay free.</p>
+          <p><b>Yes.</b> The newsletter is free, forever. Some day there may be more: courses, coaching, an emergency pinball hotline (really). The emails stay free either way.</p>
         </div>
         <div class="reveal">
           <h3>I'm a beginner. Too early?</h3>
-          <p><b>No.</b> The fundamentals are where champions are made — Steve coached Jason from age two and a half. If you can reach the flippers, you're ready.</p>
+          <p><b>No.</b> The fundamentals are where champions are made. Steve coached Jason from age two and a half. If you can reach the flippers, you're ready.</p>
         </div>
         <div class="reveal">
           <h3>I'm already ranked. Too late?</h3>
-          <p><b>Also no.</b> Tournament craft, qualification strategy, energy management — this is the layer above flipper skills. It's the part most ranked players never train.</p>
+          <p><b>Also no.</b> Tournament craft, qualification strategy, energy management: this is the layer above flipper skills. It's the part most ranked players never train.</p>
         </div>
       </div>
 
@@ -538,7 +539,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <div class="wrap">
       <p class="eyebrow reveal">Friends of the Flipper</p>
       <h2 class="reveal">We promote the people who make pinball great</h2>
-      <p class="lede reveal">Pinball gave us everything. The least we can do is point you toward the organizations, streamers, and arcades keeping it alive.</p>
+      <p class="lede reveal">Pinball gave us everything. The least we can do is point you toward the organizations, people, and places keeping it alive.</p>
 
       <div class="method-grid">
         <div class="pillar reveal">
@@ -553,8 +554,8 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         </div>
         <div class="pillar reveal">
           <div class="num">WATCH &amp; LEARN</div>
-          <h3>STREAMERS WE LOVE</h3>
-          <p>Channels we actually watch — dedicated people putting in real hours for the hobby. Go subscribe to them too.</p>
+          <h3>WHAT &amp; WHO WE LOVE</h3>
+          <p>People, projects, and channels putting in real hours for the hobby. Go support them too.</p>
           <ul>
             <li>Tournament &amp; gameplay streams</li>
             <li>Rules deep-dives &amp; tech talk</li>
@@ -564,11 +565,11 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <div class="pillar reveal">
           <div class="num">PLAY IN PERSON</div>
           <h3>PLACES TO PLAY</h3>
-          <p>Partner venues that host Zahler training days — real machines, real coaching, all ages welcome.</p>
+          <p>Partner locations that host Zahler training days: real machines, real coaching, all ages welcome.</p>
           <ul>
-            <li>New Jersey — home base</li>
+            <li>New Jersey (home base)</li>
             <li>New York City</li>
-            <li>Delaware — coming soon</li>
+            <li>Delaware (coming soon)</li>
             <li>Your city? <a href="mailto:hello@zahlerpinball.com?subject=Home%20arcade">Operators, get in touch</a></li>
           </ul>
         </div>
@@ -605,6 +606,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     Jason Zahler action figure sold separately. (Not really.) (Yet.) · Proud supporters of the IFPA and competitive pinball everywhere. · A portion of proceeds will support pinball charity programs.
   </div>
 </footer>
+</div>
 
 <script>
 /* ===== DMD attract-mode renderer ===== */
