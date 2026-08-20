@@ -779,9 +779,11 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     var ref = '';
     try{ if(document.referrer) ref = new URL(document.referrer).host; }catch(e){}
     if(ref === location.host) ref = '';
+    var via = '';
+    try{ via = new URLSearchParams(location.search).get('via') || ''; }catch(e){}
     var payload = JSON.stringify({
       event: event,
-      path: location.pathname,
+      path: location.pathname + (via ? '?via=' + via.slice(0, 32) : ''),
       ref: ref,
       device: window.matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop',
       seconds: Math.round(visibleMs / 1000),
