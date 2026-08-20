@@ -235,6 +235,19 @@ h2{font-size:clamp(25px,4.4vw,42px);margin-bottom:18px}
   margin-top:16px;letter-spacing:.05em;line-height:1.7;
 }
 .sf-success{display:none;font-family:'Bungee',cursive;color:#ffe146;font-size:17px;padding:14px 0 6px}
+/* success message: flashing attract-mode callout box */
+.sf-success{
+  border:2px solid var(--amber);border-radius:8px;
+  padding:14px 18px;margin-top:18px;
+  animation:sf-flash 1.3s steps(1,end) infinite;
+}
+@keyframes sf-flash{
+  0%,49%{background:rgba(255,174,0,.20);box-shadow:0 0 26px rgba(255,174,0,.55), inset 0 0 14px rgba(255,174,0,.22)}
+  50%,100%{background:rgba(255,174,0,.05);box-shadow:0 0 8px rgba(255,174,0,.18)}
+}
+@media(prefers-reduced-motion: reduce){
+  .sf-success{animation:none;background:rgba(255,174,0,.14);box-shadow:0 0 18px rgba(255,174,0,.35)}
+}
 
 /* secrets list (from fable) */
 .secrets{list-style:none;max-width:720px}
