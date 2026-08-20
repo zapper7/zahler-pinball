@@ -5,7 +5,7 @@
 //
 // /beacon collects first-party engagement events into Workers Analytics Engine
 // (dataset zahler_events). Schema:
-//   blobs:   [event, path, referrerHost, device]
+//   blobs:   [event, path, referrerHost, device, self("1" = flagged own device)]
 //   doubles: [visibleSeconds, scrollDepthPercent]
 //   indexes: [event]
 // Events: "view" (sent once per pageview, on first hide/leave) and "signup"
@@ -24,6 +24,7 @@ export default {
             String(d.path || '/').slice(0, 256),
             String(d.ref || '').slice(0, 256),
             String(d.device || '').slice(0, 32),
+            d.self === '1' ? '1' : '0',
           ],
           doubles: [Number(d.seconds) || 0, Number(d.scroll) || 0],
           indexes: [event],

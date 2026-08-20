@@ -761,6 +761,23 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
    Collected by the site's own edge worker at /beacon into Workers Analytics
    Engine; surfaced on the Zilla Serve analytics dashboard. */
 (function(){
+  /* self-exclusion: visit zahlerpinball.com/#iamsteve once per device to flag
+     it as ours (family/admin). Flagged devices skip Cloudflare Web Analytics
+     entirely and get tagged self=1 in the engagement beacon so the dashboard
+     can exclude them. Visit /#iamvisitor to unflag. */
+  var IS_SELF = false;
+  try{
+    if(location.hash === '#iamsteve') localStorage.setItem('zahler_self', '1');
+    if(location.hash === '#iamvisitor') localStorage.removeItem('zahler_self');
+    IS_SELF = localStorage.getItem('zahler_self') === '1';
+  }catch(e){}
+  if(!IS_SELF){
+    var cfa = document.createElement('script');
+    cfa.defer = true;
+    cfa.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    cfa.setAttribute('data-cf-beacon', '{"token": "6ed43d34957a49fcb90ec8e43f7db523"}');
+    document.head.appendChild(cfa);
+  }
   var visibleMs = 0, maxScroll = 0, viewSent = false;
   var lastShow = document.visibilityState === 'visible' ? Date.now() : null;
   function depth(){
@@ -787,7 +804,8 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       ref: ref,
       device: window.matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop',
       seconds: Math.round(visibleMs / 1000),
-      scroll: Math.round(maxScroll * 100)
+      scroll: Math.round(maxScroll * 100),
+      self: IS_SELF ? '1' : '0'
     });
     if(navigator.sendBeacon){
       navigator.sendBeacon('/beacon', new Blob([payload], {type: 'application/json'}));
