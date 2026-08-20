@@ -742,6 +742,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           if(ok) ok.textContent = okText;
           form.style.display = 'none';
           if(ok) ok.style.display = 'block';
+          if(window.zahlerBeacon) window.zahlerBeacon('signup');
         })
         .catch(function(){
           btn.disabled = false;
@@ -752,6 +753,54 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         });
     });
   });
+})();
+
+/* ===== engagement beacon (first-party, no cookies) =====
+   Reports one "view" event per pageview on leave/hide: visible time on page
+   + max scroll depth. "signup" fires from the newsletter form success handler.
+   Collected by the site's own edge worker at /beacon into Workers Analytics
+   Engine; surfaced on the Zilla Serve analytics dashboard. */
+(function(){
+  var visibleMs = 0, maxScroll = 0, viewSent = false;
+  var lastShow = document.visibilityState === 'visible' ? Date.now() : null;
+  function depth(){
+    var doc = document.documentElement;
+    var s = doc.scrollHeight > 0 ? (window.scrollY + window.innerHeight) / doc.scrollHeight : 1;
+    if(s > maxScroll) maxScroll = Math.min(1, s);
+  }
+  window.addEventListener('scroll', depth, {passive:true});
+  depth();
+  function send(event){
+    if(event === 'view'){
+      if(viewSent) return;
+      viewSent = true;
+    }
+    if(lastShow){ visibleMs += Date.now() - lastShow; lastShow = Date.now(); }
+    var ref = '';
+    try{ if(document.referrer) ref = new URL(document.referrer).host; }catch(e){}
+    if(ref === location.host) ref = '';
+    var payload = JSON.stringify({
+      event: event,
+      path: location.pathname,
+      ref: ref,
+      device: window.matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop',
+      seconds: Math.round(visibleMs / 1000),
+      scroll: Math.round(maxScroll * 100)
+    });
+    if(navigator.sendBeacon){
+      navigator.sendBeacon('/beacon', new Blob([payload], {type: 'application/json'}));
+    }
+  }
+  document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState === 'hidden'){
+      if(lastShow){ visibleMs += Date.now() - lastShow; lastShow = null; }
+      send('view');
+    }else{
+      lastShow = Date.now();
+    }
+  });
+  window.addEventListener('pagehide', function(){ send('view'); });
+  window.zahlerBeacon = send;
 })();
 
 /* ===== scroll reveal ===== */
