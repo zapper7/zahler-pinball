@@ -1,0 +1,11 @@
+.git
+.gitignore
+.wrangler
+.playwright-mcp
+.claude
+.assetsignore
+worker.js
+wrangler.jsonc
+setup.sh
+README.md
+zahler-dev-20260704-05
