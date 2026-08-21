@@ -779,6 +779,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     cfa.setAttribute('data-cf-beacon', '{"token": "6ed43d34957a49fcb90ec8e43f7db523"}');
     document.head.appendChild(cfa);
   }
+  if(navigator.webdriver) return; /* automated browsers don't count as engagement */
   var visibleMs = 0, maxScroll = 0, viewSent = false;
   var lastShow = document.visibilityState === 'visible' ? Date.now() : null;
   function depth(){
