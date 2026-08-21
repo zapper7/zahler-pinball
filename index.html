@@ -348,6 +348,10 @@ h2{font-size:clamp(25px,4.4vw,42px);margin-bottom:18px}
   padding:14px 18px;margin-top:18px;
   animation:sf-flash 1.3s steps(1,end) infinite;
 }
+.sf-success .sf-l1{display:block}
+.sf-success .sf-l2{display:block;font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--cream);margin-top:9px;letter-spacing:.04em}
+.sf-success .sf-l3{display:block;font-family:'Share Tech Mono',monospace;font-size:12.5px;margin-top:7px}
+.sf-success .sf-l3 a{color:var(--amber)}
 @keyframes sf-flash{
   0%,49%{background:rgba(255,174,0,.20);box-shadow:0 0 26px rgba(255,174,0,.55), inset 0 0 14px rgba(255,174,0,.22)}
   50%,100%{background:rgba(255,174,0,.05);box-shadow:0 0 8px rgba(255,174,0,.18)}
@@ -574,10 +578,11 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <form class="js-signup-form" novalidate>
           <div class="sf-row">
             <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address" autocomplete="email">
+            <input type="email" name="email2" placeholder="retype your email" required aria-label="Confirm email address" autocomplete="email">
             <button type="submit">SEND ME THE SECRETS</button>
           </div>
         </form>
-        <div class="sf-success">PLAYER 1: CHECK YOUR EMAIL TO CONFIRM (check junk folder if not in your inbox)</div>
+        <div class="sf-success"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Confirm' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div>
         <p class="fine">Free. No spam. Unsubscribe anytime.</p>
       </div>
     </div>
@@ -643,11 +648,12 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         -->
         <form class="js-signup-form" novalidate>
           <div class="form-row">
-            <input type="email" name="email" placeholder="you@flipperskills.com" required aria-label="Email address">
+            <input type="email" name="email" placeholder="you@flipperskills.com" required aria-label="Email address" autocomplete="email">
+            <input type="email" name="email2" placeholder="retype your email" required aria-label="Confirm email address" autocomplete="email">
             <button class="btn btn-fill" type="submit">SIGN ME UP</button>
           </div>
         </form>
-        <div class="sf-success" style="font-size:16px">PLAYER 1: CHECK YOUR EMAIL TO CONFIRM (check junk folder if not in your inbox)</div>
+        <div class="sf-success" style="font-size:16px"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Confirm' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div>
 
         <p class="fine">No spam. No drains. Unsubscribe anytime.</p>
       </div>
@@ -708,10 +714,11 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <form class="js-signup-form" novalidate>
           <div class="sf-row">
             <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address" autocomplete="email">
+            <input type="email" name="email2" placeholder="retype your email" required aria-label="Confirm email address" autocomplete="email">
             <button type="submit">SIGN ME UP</button>
           </div>
         </form>
-        <div class="sf-success">PLAYER 1: CHECK YOUR EMAIL TO CONFIRM (check junk folder if not in your inbox)</div>
+        <div class="sf-success"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Confirm' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div>
         <p class="fine">Free. No spam. Unsubscribe anytime.</p>
       </div>
     </div>
@@ -832,13 +839,40 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 (function(){
   const KIT_URL = 'https://app.kit.com/forms/9821722/subscriptions';
   document.querySelectorAll('.js-signup-form').forEach(function(form){
+    const ok = form.parentElement.querySelector('.sf-success');
+    if(ok && !ok.dataset.okHtml) ok.dataset.okHtml = ok.innerHTML;
+    function restoreOk(){ if(ok){ ok.innerHTML = ok.dataset.okHtml; } }
+    // typos can't hide if the address is typed out twice: no clipboard shortcuts
+    form.querySelectorAll('input[type=email]').forEach(function(inp){
+      ['paste','copy','cut'].forEach(function(evt){
+        inp.addEventListener(evt, function(e){
+          e.preventDefault();
+          if(ok){
+            ok.textContent = "NO SHORTCUTS: TYPE IT OUT SO TYPOS CAN'T HIDE.";
+            ok.style.display = 'block';
+          }
+        });
+      });
+    });
     form.addEventListener('submit', function(e){
       e.preventDefault();
-      const email = form.querySelector('input[type=email]');
-      if(!email.value || !email.value.includes('@')){ email.focus(); return; }
+      const email = form.querySelector('input[name=email]');
+      const email2 = form.querySelector('input[name=email2]');
       const btn = form.querySelector('button');
-      const ok = form.parentElement.querySelector('.sf-success');
-      const okText = ok ? ok.textContent : '';
+      if(!email.value || !email.value.includes('@')){ email.focus(); return; }
+      if(!email2 || email.value.trim().toLowerCase() !== email2.value.trim().toLowerCase()){
+        if(email2){
+          email2.style.borderColor = '#e63329';
+          email2.addEventListener('input', function(){ email2.style.borderColor = ''; }, {once:true});
+          email2.focus();
+        }
+        if(ok){
+          ok.textContent = "TILT: EMAILS DON'T MATCH. CHECK FOR TYPOS AND FLIP AGAIN.";
+          ok.style.display = 'block';
+        }
+        return;
+      }
+      if(ok){ ok.style.display = 'none'; }
       btn.disabled = true;
       const data = new FormData();
       data.append('email_address', email.value.trim());
@@ -846,7 +880,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
         .then(function(res){
           if(res && res.status === 'failed') throw new Error('failed');
-          if(ok) ok.textContent = okText;
+          restoreOk();
           form.style.display = 'none';
           if(ok) ok.style.display = 'block';
           if(window.zahlerBeacon) window.zahlerBeacon('signup');
@@ -859,6 +893,22 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           }
         });
     });
+  });
+  // "try again" link inside the success box brings the form back
+  document.addEventListener('click', function(e){
+    const again = e.target.closest('.sf-again');
+    if(!again) return;
+    e.preventDefault();
+    const box = again.closest('.sf-success');
+    const form = box.parentElement.querySelector('.js-signup-form');
+    box.style.display = 'none';
+    box.innerHTML = box.dataset.okHtml;
+    form.style.display = '';
+    const btn = form.querySelector('button');
+    if(btn) btn.disabled = false;
+    form.querySelectorAll('input[type=email]').forEach(function(inp){ inp.value = ''; });
+    const email = form.querySelector('input[name=email]');
+    if(email){ email.focus(); }
   });
 })();
 
