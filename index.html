@@ -876,6 +876,21 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       btn.disabled = true;
       const data = new FormData();
       data.append('email_address', email.value.trim());
+      /* attribution: same extras Kit's own embed sends, so the subscriber's
+         "How they first found you" (referrer + UTM) fields get populated.
+         Our ?via= shortlink tags are translated into utm_source. */
+      try{
+        data.append('referrer', document.referrer || '');
+        data.append('host', location.href);
+        const qp = new URLSearchParams(location.search);
+        const via = qp.get('via');
+        if(via && !qp.get('utm_source')){ qp.set('utm_source', via); qp.set('utm_medium', 'shortlink'); }
+        const qs = qp.toString();
+        data.append('search', qs ? '?' + qs : '');
+        let src = via || '';
+        if(!src && document.referrer){ try{ src = new URL(document.referrer).hostname; }catch(e){} }
+        data.append('fields[signup_source]', src || 'direct');
+      }catch(e){}
       fetch(KIT_URL, {method:'POST', body:data, headers:{'Accept':'application/json'}})
         .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
         .then(function(res){
