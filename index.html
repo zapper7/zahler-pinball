@@ -805,7 +805,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       path: location.pathname + (via ? '?via=' + via.slice(0, 32) : ''),
       ref: ref,
       device: window.matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop',
-      seconds: Math.round(visibleMs / 1000),
+      seconds: Math.min(Math.round(visibleMs / 1000), 900),
       scroll: Math.round(maxScroll * 100),
       self: IS_SELF ? '1' : '0'
     });
