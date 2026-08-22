@@ -352,6 +352,8 @@ h2{font-size:clamp(25px,4.4vw,42px);margin-bottom:18px}
 .sf-success .sf-l2{display:block;font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--cream);margin-top:9px;letter-spacing:.04em}
 .sf-success .sf-l3{display:block;font-family:'Share Tech Mono',monospace;font-size:12.5px;margin-top:7px}
 .sf-success .sf-l3 a{color:var(--amber)}
+.sf-done{display:none;font-family:'Share Tech Mono',monospace;font-size:14px;letter-spacing:.08em;color:var(--amber);padding:12px 0}
+.sf-done a{color:var(--steel);font-size:12.5px}
 @keyframes sf-flash{
   0%,49%{background:rgba(255,174,0,.20);box-shadow:0 0 26px rgba(255,174,0,.55), inset 0 0 14px rgba(255,174,0,.22)}
   50%,100%{background:rgba(255,174,0,.05);box-shadow:0 0 8px rgba(255,174,0,.18)}
@@ -582,7 +584,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
             <button type="submit">SEND ME THE SECRETS</button>
           </div>
         </form>
-        <div class="sf-success"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Confirm' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div>
+        <div class="sf-success"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Confirm' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
         <p class="fine">Free. No spam. Unsubscribe anytime.</p>
       </div>
     </div>
@@ -653,9 +655,9 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
             <button class="btn btn-fill" type="submit">SIGN ME UP</button>
           </div>
         </form>
-        <div class="sf-success" style="font-size:16px"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Confirm' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div>
+        <div class="sf-success" style="font-size:16px"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Confirm' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
 
-        <p class="fine">No spam. No drains. Unsubscribe anytime.</p>
+        <p class="fine">Same newsletter as above. We just saved you the scroll back up. No spam. No drains. Unsubscribe anytime.</p>
       </div>
     </div>
   </section>
@@ -718,8 +720,8 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
             <button type="submit">SIGN ME UP</button>
           </div>
         </form>
-        <div class="sf-success"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Confirm' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div>
-        <p class="fine">Free. No spam. Unsubscribe anytime.</p>
+        <div class="sf-success"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Confirm' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
+        <p class="fine">Same newsletter as the forms above. One signup covers everything. Free. No spam. Unsubscribe anytime.</p>
       </div>
     </div>
   </section>
@@ -835,11 +837,44 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   window.addEventListener('resize', function(){ if(window.innerWidth > 760) closeNav(); });
 })();
 
-/* ===== newsletter forms (Kit — form 9821722, double opt-in) ===== */
+/* ===== newsletter forms (Kit — form 9821722, double opt-in) =====
+   One newsletter, three entry points. Signing up at any form flips ALL forms
+   into a signed-up state, remembered across visits (localStorage, no cookies),
+   so the page never asks an already-subscribed reader again (Connie's note,
+   2026-08-22). */
 (function(){
   const KIT_URL = 'https://app.kit.com/forms/9821722/subscriptions';
-  document.querySelectorAll('.js-signup-form').forEach(function(form){
-    const ok = form.parentElement.querySelector('.sf-success');
+  const KEY = 'zahler_signed_up';
+  const flag = {
+    get(){ try{ return localStorage.getItem(KEY) === '1'; }catch(e){ return false; } },
+    set(){ try{ localStorage.setItem(KEY, '1'); }catch(e){} },
+    clear(){ try{ localStorage.removeItem(KEY); }catch(e){} }
+  };
+  const forms = Array.from(document.querySelectorAll('.js-signup-form'));
+  const part = (form, sel) => form.parentElement.querySelector(sel);
+
+  function markDone(exceptForm){
+    forms.forEach(function(f){
+      if(f === exceptForm) return;
+      f.style.display = 'none';
+      const box = part(f, '.sf-success'); if(box) box.style.display = 'none';
+      const done = part(f, '.sf-done'); if(done) done.style.display = 'block';
+    });
+  }
+  function resetAll(){
+    flag.clear();
+    forms.forEach(function(f){
+      f.style.display = '';
+      f.querySelectorAll('input[type=email]').forEach(function(inp){ inp.value = ''; });
+      const btn = f.querySelector('button'); if(btn) btn.disabled = false;
+      const box = part(f, '.sf-success');
+      if(box){ box.style.display = 'none'; if(box.dataset.okHtml) box.innerHTML = box.dataset.okHtml; }
+      const done = part(f, '.sf-done'); if(done) done.style.display = 'none';
+    });
+  }
+
+  forms.forEach(function(form){
+    const ok = part(form, '.sf-success');
     if(ok && !ok.dataset.okHtml) ok.dataset.okHtml = ok.innerHTML;
     function restoreOk(){ if(ok){ ok.innerHTML = ok.dataset.okHtml; } }
     // typos can't hide if the address is typed out twice: no clipboard shortcuts
@@ -898,6 +933,8 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           restoreOk();
           form.style.display = 'none';
           if(ok) ok.style.display = 'block';
+          flag.set();
+          markDone(form);
           if(window.zahlerBeacon) window.zahlerBeacon('signup');
         })
         .catch(function(){
@@ -909,22 +946,21 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         });
     });
   });
-  // "try again" link inside the success box brings the form back
+
+  // "sign up again" (in the confirm box) and "(different email?)" (in the
+  // signed-up state) both reset every form to a fresh, empty start
   document.addEventListener('click', function(e){
-    const again = e.target.closest('.sf-again');
-    if(!again) return;
+    const link = e.target.closest('.sf-again, .sf-undo');
+    if(!link) return;
     e.preventDefault();
-    const box = again.closest('.sf-success');
-    const form = box.parentElement.querySelector('.js-signup-form');
-    box.style.display = 'none';
-    box.innerHTML = box.dataset.okHtml;
-    form.style.display = '';
-    const btn = form.querySelector('button');
-    if(btn) btn.disabled = false;
-    form.querySelectorAll('input[type=email]').forEach(function(inp){ inp.value = ''; });
-    const email = form.querySelector('input[name=email]');
-    if(email){ email.focus(); }
+    const container = link.closest('.sf-success, .sf-done');
+    const form = container ? container.parentElement.querySelector('.js-signup-form') : null;
+    resetAll();
+    if(form){ const email = form.querySelector('input[name=email]'); if(email) email.focus(); }
   });
+
+  // returning subscriber: greet, don't re-pitch
+  if(flag.get()) markDone(null);
 })();
 
 /* ===== engagement beacon (first-party, no cookies) =====
