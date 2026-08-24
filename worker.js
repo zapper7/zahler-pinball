@@ -36,6 +36,13 @@ function parseUA(ua) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    // plain-HTTP requests get a permanent redirect to HTTPS (belt to the
+    // Cloudflare "Always Use HTTPS" suspenders; Google flagged http:// URLs)
+    if (url.protocol === 'http:') {
+      url.protocol = 'https:';
+      url.hostname = 'zahlerpinball.com';
+      return Response.redirect(url.toString(), 301);
+    }
     if (url.pathname === '/beacon' && request.method === 'POST') {
       try {
         const d = await request.json();
