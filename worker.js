@@ -6,7 +6,7 @@
 // /beacon collects first-party engagement events into Workers Analytics Engine
 // (dataset zahler_events). Schema:
 //   blobs:   [event, path, referrerHost, device, self("1" = flagged own device),
-//             country, browser, os, source]
+//             country, browser, os, source, region]
 //   doubles: [visibleSeconds, scrollDepthPercent, pageLoadMs]
 //   indexes: [event]
 // country comes from Cloudflare's edge (request.cf), browser/os from a light
@@ -43,6 +43,7 @@ export default {
         const path = String(d.path || '/').slice(0, 256);
         const { browser, os } = parseUA(request.headers.get('User-Agent') || '');
         const country = (request.cf && request.cf.country) || '';
+        const region = (request.cf && (request.cf.regionCode || request.cf.region)) || '';
         let source = '';
         const m = path.match(/[?&]via=([^&]+)/);
         if (m) source = decodeURIComponent(m[1]).slice(0, 32);
@@ -57,6 +58,7 @@ export default {
             browser,
             os,
             source,
+            String(region).slice(0, 32),
           ],
           doubles: [Number(d.seconds) || 0, Number(d.scroll) || 0, Number(d.load) || 0],
           indexes: [event],
