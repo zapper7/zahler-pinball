@@ -1014,6 +1014,13 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       device: window.matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop',
       seconds: Math.min(Math.round(visibleMs / 1000), 900),
       scroll: Math.round(maxScroll * 100),
+      load: (function(){
+        try{
+          var nav = performance.getEntriesByType('navigation')[0];
+          var ms = nav && nav.loadEventEnd > 0 ? nav.loadEventEnd : 0;
+          return Math.min(Math.round(ms), 60000);
+        }catch(e){ return 0; }
+      })(),
       self: IS_SELF ? '1' : '0'
     });
     if(navigator.sendBeacon){

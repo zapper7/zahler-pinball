@@ -7,7 +7,7 @@
 // (dataset zahler_events). Schema:
 //   blobs:   [event, path, referrerHost, device, self("1" = flagged own device),
 //             country, browser, os, source]
-//   doubles: [visibleSeconds, scrollDepthPercent]
+//   doubles: [visibleSeconds, scrollDepthPercent, pageLoadMs]
 //   indexes: [event]
 // country comes from Cloudflare's edge (request.cf), browser/os from a light
 // server-side User-Agent parse, source from the ?via= tag embedded in path.
@@ -58,7 +58,7 @@ export default {
             os,
             source,
           ],
-          doubles: [Number(d.seconds) || 0, Number(d.scroll) || 0],
+          doubles: [Number(d.seconds) || 0, Number(d.scroll) || 0, Number(d.load) || 0],
           indexes: [event],
         });
       } catch (e) {
