@@ -5,11 +5,33 @@
 //
 // /beacon collects first-party engagement events into Workers Analytics Engine
 // (dataset zahler_events). Schema:
-//   blobs:   [event, path, referrerHost, device, self("1" = flagged own device)]
+//   blobs:   [event, path, referrerHost, device, self("1" = flagged own device),
+//             country, browser, os, source]
 //   doubles: [visibleSeconds, scrollDepthPercent]
 //   indexes: [event]
+// country comes from Cloudflare's edge (request.cf), browser/os from a light
+// server-side User-Agent parse, source from the ?via= tag embedded in path.
 // Events: "view" (sent once per pageview, on first hide/leave) and "signup"
 // (sent when the newsletter form succeeds). No cookies, no user identifiers.
+
+function parseUA(ua) {
+  let browser = 'other';
+  if (/Edg\//.test(ua)) browser = 'Edge';
+  else if (/OPR\/|Opera/.test(ua)) browser = 'Opera';
+  else if (/SamsungBrowser/.test(ua)) browser = 'Samsung';
+  else if (/Firefox\//.test(ua)) browser = 'Firefox';
+  else if (/CriOS\//.test(ua)) browser = 'Chrome';
+  else if (/Chrome\//.test(ua)) browser = 'Chrome';
+  else if (/Safari\//.test(ua) && /Version\//.test(ua)) browser = 'Safari';
+  let os = 'other';
+  if (/iPhone|iPad|iPod/.test(ua)) os = 'iOS';
+  else if (/Android/.test(ua)) os = 'Android';
+  else if (/Mac OS X/.test(ua)) os = 'macOS';
+  else if (/Windows/.test(ua)) os = 'Windows';
+  else if (/CrOS/.test(ua)) os = 'ChromeOS';
+  else if (/Linux/.test(ua)) os = 'Linux';
+  return { browser, os };
+}
 
 export default {
   async fetch(request, env) {
@@ -18,13 +40,23 @@ export default {
       try {
         const d = await request.json();
         const event = String(d.event || 'view').slice(0, 32);
+        const path = String(d.path || '/').slice(0, 256);
+        const { browser, os } = parseUA(request.headers.get('User-Agent') || '');
+        const country = (request.cf && request.cf.country) || '';
+        let source = '';
+        const m = path.match(/[?&]via=([^&]+)/);
+        if (m) source = decodeURIComponent(m[1]).slice(0, 32);
         env.ZAHLER_EVENTS.writeDataPoint({
           blobs: [
             event,
-            String(d.path || '/').slice(0, 256),
+            path,
             String(d.ref || '').slice(0, 256),
             String(d.device || '').slice(0, 32),
             d.self === '1' ? '1' : '0',
+            String(country).slice(0, 8),
+            browser,
+            os,
+            source,
           ],
           doubles: [Number(d.seconds) || 0, Number(d.scroll) || 0],
           indexes: [event],
