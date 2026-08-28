@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn Pinball — Every Edition of the Zahler Pinball Newsletter</title>
+<meta name="description" content="Learn pinball from Jason Zahler, three-time consecutive IFPA World Champion, and his coach dad Steve. Every edition of the free training newsletter, readable on the web.">
+<link rel="canonical" href="https://zahlerpinball.com/learn-pinball/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Learn Pinball — the Zahler Pinball newsletter archive">
+<meta property="og:description" content="Every edition of the free training newsletter from the world #1 and his coach dad.">
+<meta property="og:url" content="https://zahlerpinball.com/learn-pinball/">
+<meta property="og:image" content="https://zahlerpinball.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zahlerpinball.com/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Archivo:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#130e09;--panel:#1d150d;--amber:#ffae00;--amber-dim:#5a3a08;--red:#e63329;--cream:#f6ead6;--steel:#9b8e7c;--line:#2c2115}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{overflow-x:hidden;background:var(--ink);color:var(--cream);font-family:'Archivo',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;padding:26px 18px 70px}
+.wrap{max-width:660px;margin:0 auto}
+.brand{font-family:'Bungee',cursive;font-size:15px;color:var(--cream);text-decoration:none}
+.brand b{color:var(--amber)}
+h1{font-family:'Bungee',cursive;font-weight:400;font-size:clamp(28px,6vw,42px);line-height:1.1;margin:30px 0 10px}
+.dek{color:var(--steel);font-size:16.5px;margin-bottom:34px}
+.edition{display:block;border:1.5px solid var(--line);border-radius:16px;background:var(--panel);padding:20px 22px;margin-bottom:14px;text-decoration:none;color:var(--cream);transition:border-color .12s}
+.edition:hover{border-color:var(--amber)}
+.edition .no{font-family:'Share Tech Mono',monospace;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.edition h2{font-family:'Bungee',cursive;font-weight:400;font-size:20px;margin-bottom:6px}
+.edition p{color:var(--steel);font-size:15px}
+.edition .go{color:var(--amber);font-family:'Share Tech Mono',monospace;font-size:12.5px;margin-top:10px;display:inline-block}
+.soon{border:1.5px dashed var(--line);border-radius:16px;padding:18px 22px;color:var(--steel);font-size:14.5px;margin-bottom:14px}
+.ctabox{border:1.5px solid var(--amber);border-radius:16px;background:var(--panel);padding:22px;margin-top:32px;text-align:center}
+.ctabox h2{font-family:'Bungee',cursive;font-weight:400;font-size:19px;margin-bottom:8px}
+.ctabox p{color:var(--steel);font-size:15px;margin-bottom:16px}
+.ctabtn{display:inline-block;font-family:'Bungee',cursive;font-size:15px;background:var(--amber);color:var(--ink);text-decoration:none;border-radius:12px;padding:14px 26px}
+.ctabtn:hover{background:#ffc23d}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="/">ZAHLER <b>PINBALL</b></a>
+  <h1>Learn Pinball</h1>
+  <p class="dek">Every edition of the free training newsletter, readable right here. From Jason Zahler, three-time consecutive IFPA World Champion and world #1, and Steve Zahler, the dad who coaches him. No schedule: editions land when they're ready, and subscribers get them first.</p>
+
+  <a class="edition" href="/learn-pinball/how-to-play-any-pinball-machine">
+    <div class="no">Edition 1</div>
+    <h2>Look before you plunge.</h2>
+    <p>How to play any pinball machine you walk up to: the 30-second scan that separates players from passengers. From the coach's side of the glass, with a note from Jason.</p>
+    <span class="go">Read it &rarr;</span>
+  </a>
+
+  <div class="soon">Edition 2 is in the shooter lane. Subscribers hear it first.</div>
+
+  <div class="ctabox" id="ctabox">
+    <h2>Get every edition in your inbox</h2>
+    <p>Free, no spam. Plus things that never hit this page, including the Secret Tapes.</p>
+    <a class="ctabtn" href="/#newsletter">Sign me up &rarr;</a>
+  </div>
+</div>
+<script>
+(function(){
+  try{
+    if(localStorage.getItem('zahler_signed_up') === '1'){
+      var b = document.getElementById('ctabox');
+      b.innerHTML = '<h2>YOU&#39;RE SIGNED UP</h2><p style="margin-bottom:0">Every new edition comes straight to you. This page is your back-issue shelf.</p>';
+    }
+  }catch(e){}
+})();
+/* ===== engagement beacon (first-party, no cookies) =====
+   Reports one "view" event per pageview on leave/hide: visible time on page
+   + max scroll depth. "signup" fires from the newsletter form success handler.
+   Collected by the site's own edge worker at /beacon into Workers Analytics
+   Engine; surfaced on the Zilla Serve analytics dashboard. */
+(function(){
+  /* self-exclusion: visit zahlerpinball.com/#iamsteve once per device to flag
+     it as ours (family/admin). Flagged devices skip Cloudflare Web Analytics
+     entirely and get tagged self=1 in the engagement beacon so the dashboard
+     can exclude them. Visit /#iamvisitor to unflag. */
+  var IS_SELF = false;
+  try{
+    if(location.hash === '#iamsteve') localStorage.setItem('zahler_self', '1');
+    if(location.hash === '#iamvisitor') localStorage.removeItem('zahler_self');
+    IS_SELF = localStorage.getItem('zahler_self') === '1';
+  }catch(e){}
+  if(!IS_SELF){
+    var cfa = document.createElement('script');
+    cfa.defer = true;
+    cfa.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    cfa.setAttribute('data-cf-beacon', '{"token": "6ed43d34957a49fcb90ec8e43f7db523"}');
+    document.head.appendChild(cfa);
+  }
+  if(navigator.webdriver) return; /* automated browsers don't count as engagement */
+  var visibleMs = 0, maxScroll = 0, viewSent = false;
+  var lastShow = document.visibilityState === 'visible' ? Date.now() : null;
+  function depth(){
+    var doc = document.documentElement;
+    var s = doc.scrollHeight > 0 ? (window.scrollY + window.innerHeight) / doc.scrollHeight : 1;
+    if(s > maxScroll) maxScroll = Math.min(1, s);
+  }
+  window.addEventListener('scroll', depth, {passive:true});
+  depth();
+  function send(event){
+    if(event === 'view'){
+      if(viewSent) return;
+      viewSent = true;
+    }
+    if(lastShow){ visibleMs += Date.now() - lastShow; lastShow = Date.now(); }
+    var ref = '';
+    try{ if(document.referrer) ref = new URL(document.referrer).host; }catch(e){}
+    if(ref === location.host) ref = '';
+    var via = '';
+    try{ via = new URLSearchParams(location.search).get('via') || ''; }catch(e){}
+    var payload = JSON.stringify({
+      event: event,
+      path: location.pathname + (via ? '?via=' + via.slice(0, 32) : ''),
+      ref: ref,
+      device: window.matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop',
+      seconds: Math.min(Math.round(visibleMs / 1000), 900),
+      scroll: Math.round(maxScroll * 100),
+      load: (function(){
+        try{
+          var nav = performance.getEntriesByType('navigation')[0];
+          var ms = nav && nav.loadEventEnd > 0 ? nav.loadEventEnd : 0;
+          return Math.min(Math.round(ms), 60000);
+        }catch(e){ return 0; }
+      })(),
+      self: IS_SELF ? '1' : '0'
+    });
+    if(navigator.sendBeacon){
+      navigator.sendBeacon('/beacon', new Blob([payload], {type: 'application/json'}));
+    }
+  }
+  document.addEventListener('visibilitychange', function(){
+    if(document.visibilityState === 'hidden'){
+      if(lastShow){ visibleMs += Date.now() - lastShow; lastShow = null; }
+      send('view');
+    }else{
+      lastShow = Date.now();
+    }
+  });
+  window.addEventListener('pagehide', function(){ send('view'); });
+  window.zahlerBeacon = send;
+})();
+</script>
+</body>
+</html>
