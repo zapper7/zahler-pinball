@@ -43,11 +43,6 @@ export default {
       url.hostname = 'zahlerpinball.com';
       return Response.redirect(url.toString(), 301);
     }
-    // legacy URL from the pre-rename launch morning; permanent home is the
-    // learn-pinball folder
-    if (url.pathname === '/edition-1' || url.pathname === '/edition-1.html') {
-      return Response.redirect('https://zahlerpinball.com/learn-pinball/how-to-play-any-pinball-machine', 301);
-    }
     if (url.pathname === '/beacon' && request.method === 'POST') {
       try {
         const d = await request.json();
