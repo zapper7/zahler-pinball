@@ -586,7 +586,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
             <button type="submit">SEND ME THE SECRETS</button>
           </div>
         </form>
-        <div class="sf-success"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Opt-In to Newsletter' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
+        <div class="sf-success"><span class="sf-l1">Wait! Your signup is NOT complete...</span><span class="sf-l2">We just sent you an email. Press 'Opt-In to Newsletter' inside it to finish signing up.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
         <p class="fine">Free. No spam. Unsubscribe anytime.</p>
         <p class="fine" style="margin-top:6px"><a href="/learn-pinball/how-to-play-any-pinball-machine" style="color:var(--amber);font-family:'Share Tech Mono',monospace;letter-spacing:.08em">READ EDITION 1 &rarr;</a></p>
       </div>
@@ -658,7 +658,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
             <button class="btn btn-fill" type="submit">SIGN ME UP</button>
           </div>
         </form>
-        <div class="sf-success" style="font-size:16px"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Opt-In to Newsletter' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
+        <div class="sf-success" style="font-size:16px"><span class="sf-l1">Wait! Your signup is NOT complete...</span><span class="sf-l2">We just sent you an email. Press 'Opt-In to Newsletter' inside it to finish signing up.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
 
         <p class="fine">Same newsletter as above. We just saved you the scroll back up. No spam. No drains. Unsubscribe anytime.</p>
         <p class="fine" style="margin-top:6px"><a href="/learn-pinball/how-to-play-any-pinball-machine" style="color:var(--amber);font-family:'Share Tech Mono',monospace;letter-spacing:.08em">READ EDITION 1 &rarr;</a></p>
@@ -724,7 +724,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
             <button type="submit">SIGN ME UP</button>
           </div>
         </form>
-        <div class="sf-success"><span class="sf-l1">Wait! One last step...</span><span class="sf-l2">Press 'Opt-In to Newsletter' in the email we just sent you.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
+        <div class="sf-success"><span class="sf-l1">Wait! Your signup is NOT complete...</span><span class="sf-l2">We just sent you an email. Press 'Opt-In to Newsletter' inside it to finish signing up.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
         <p class="fine">Same newsletter as the forms above. One signup covers everything. Free. No spam. Unsubscribe anytime.</p>
         <p class="fine" style="margin-top:6px"><a href="/learn-pinball/how-to-play-any-pinball-machine" style="color:var(--amber);font-family:'Share Tech Mono',monospace;letter-spacing:.08em">READ EDITION 1 &rarr;</a></p>
       </div>
@@ -882,8 +882,9 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     const ok = part(form, '.sf-success');
     if(ok && !ok.dataset.okHtml) ok.dataset.okHtml = ok.innerHTML;
     function restoreOk(){ if(ok){ ok.innerHTML = ok.dataset.okHtml; } }
-    // typos can't hide if the address is typed out twice: no clipboard shortcuts
-    form.querySelectorAll('input[type=email]').forEach(function(inp){
+    // typos can't hide if the address is typed out twice: the RETYPE field
+    // takes no clipboard shortcuts (pasting into the first field is fine)
+    form.querySelectorAll('input[name=email2]').forEach(function(inp){
       ['paste','copy','cut'].forEach(function(evt){
         inp.addEventListener(evt, function(e){
           e.preventDefault();
