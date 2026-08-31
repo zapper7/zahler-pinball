@@ -586,7 +586,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
             <button type="submit">SEND ME THE SECRETS</button>
           </div>
         </form>
-        <div class="sf-success"><span class="sf-l1">Wait! Your signup is NOT complete...</span><span class="sf-l2">We just sent you an email. Press 'Opt-In to Newsletter' inside it to finish signing up.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
+        <div class="sf-success"><span class="sf-l1">Wait! Your signup is NOT complete...</span><span class="sf-l2">We just sent you an email. Press 'Opt-In to Newsletter' inside it to finish signing up.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'VE SUBMITTED YOUR EMAIL &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
         <p class="fine">Free. No spam. Unsubscribe anytime.</p>
         <p class="fine" style="margin-top:6px"><a href="/learn-pinball/how-to-play-any-pinball-machine" style="color:var(--amber);font-family:'Share Tech Mono',monospace;letter-spacing:.08em">READ EDITION 1 &rarr;</a></p>
       </div>
@@ -658,7 +658,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
             <button class="btn btn-fill" type="submit">SIGN ME UP</button>
           </div>
         </form>
-        <div class="sf-success" style="font-size:16px"><span class="sf-l1">Wait! Your signup is NOT complete...</span><span class="sf-l2">We just sent you an email. Press 'Opt-In to Newsletter' inside it to finish signing up.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
+        <div class="sf-success" style="font-size:16px"><span class="sf-l1">Wait! Your signup is NOT complete...</span><span class="sf-l2">We just sent you an email. Press 'Opt-In to Newsletter' inside it to finish signing up.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'VE SUBMITTED YOUR EMAIL &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
 
         <p class="fine">Same newsletter as above. We just saved you the scroll back up. No spam. No drains. Unsubscribe anytime.</p>
         <p class="fine" style="margin-top:6px"><a href="/learn-pinball/how-to-play-any-pinball-machine" style="color:var(--amber);font-family:'Share Tech Mono',monospace;letter-spacing:.08em">READ EDITION 1 &rarr;</a></p>
@@ -724,7 +724,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
             <button type="submit">SIGN ME UP</button>
           </div>
         </form>
-        <div class="sf-success"><span class="sf-l1">Wait! Your signup is NOT complete...</span><span class="sf-l2">We just sent you an email. Press 'Opt-In to Newsletter' inside it to finish signing up.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'RE SIGNED UP &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
+        <div class="sf-success"><span class="sf-l1">Wait! Your signup is NOT complete...</span><span class="sf-l2">We just sent you an email. Press 'Opt-In to Newsletter' inside it to finish signing up.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'VE SUBMITTED YOUR EMAIL &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
         <p class="fine">Same newsletter as the forms above. One signup covers everything. Free. No spam. Unsubscribe anytime.</p>
         <p class="fine" style="margin-top:6px"><a href="/learn-pinball/how-to-play-any-pinball-machine" style="color:var(--amber);font-family:'Share Tech Mono',monospace;letter-spacing:.08em">READ EDITION 1 &rarr;</a></p>
       </div>
@@ -866,6 +866,11 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       const done = part(f, '.sf-done'); if(done) done.style.display = 'block';
     });
   }
+  function editionLink(f){
+    const ps = f.parentElement.querySelectorAll('p');
+    for(let i = 0; i < ps.length; i++){ if(/READ EDITION/.test(ps[i].textContent)) return ps[i]; }
+    return null;
+  }
   function resetAll(){
     flag.clear();
     forms.forEach(function(f){
@@ -875,6 +880,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       const box = part(f, '.sf-success');
       if(box){ box.style.display = 'none'; if(box.dataset.okHtml) box.innerHTML = box.dataset.okHtml; }
       const done = part(f, '.sf-done'); if(done) done.style.display = 'none';
+      const rl = editionLink(f); if(rl) rl.style.display = '';
     });
   }
 
@@ -939,6 +945,8 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           restoreOk();
           form.style.display = 'none';
           if(ok) ok.style.display = 'block';
+          /* one job now: go press the opt-in button. No competing links. */
+          const rl = editionLink(form); if(rl) rl.style.display = 'none';
           flag.set();
           markDone(form);
           if(window.zahlerBeacon) window.zahlerBeacon('signup');
