@@ -221,8 +221,9 @@ article .ps{color:var(--steel);font-size:15.5px;border-left:2px solid var(--line
     const ok = part(form, '.sf-success');
     if(ok && !ok.dataset.okHtml) ok.dataset.okHtml = ok.innerHTML;
     function restoreOk(){ if(ok){ ok.innerHTML = ok.dataset.okHtml; } }
-    // typos can't hide if the address is typed out twice: no clipboard shortcuts
-    form.querySelectorAll('input[type=email]').forEach(function(inp){
+    // typos can't hide if the address is typed out twice: the RETYPE field
+    // takes no clipboard shortcuts (pasting into the first field is fine)
+    form.querySelectorAll('input[name=email2]').forEach(function(inp){
       ['paste','copy','cut'].forEach(function(evt){
         inp.addEventListener(evt, function(e){
           e.preventDefault();
