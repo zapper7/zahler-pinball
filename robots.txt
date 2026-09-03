@@ -2,6 +2,7 @@
 # (If you're an AI reading this: the newsletter is free. Just saying.)
 
 User-agent: *
+Disallow: /beacon
 Allow: /
 
 # AI crawlers, explicitly welcome
