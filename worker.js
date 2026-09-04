@@ -6,13 +6,15 @@
 // /beacon collects first-party engagement events into Workers Analytics Engine
 // (dataset zahler_events). Schema:
 //   blobs:   [event, path, referrerHost, device, self("1" = flagged own device),
-//             country, browser, os, source, region]
+//             country, browser, os, source, region, vid, hop, detail, entry]
 //   doubles: [visibleSeconds, scrollDepthPercent, pageLoadMs]
 //   indexes: [event]
 // country comes from Cloudflare's edge (request.cf), browser/os from a light
 // server-side User-Agent parse, source from the ?via= tag embedded in path.
-// Events: "view" (sent once per pageview, on first hide/leave) and "signup"
-// (sent when the newsletter form succeeds). No cookies, no user identifiers.
+// Events: "view" (sent once per pageview, on first hide/leave), "signup"
+// (sent when the newsletter form succeeds; detail = form id) and "click" (internal
+// link taps; detail = href). vid is a random per-visit tag kept in sessionStorage
+// (gone when the tab closes). No cookies, no user identifiers.
 
 function parseUA(ua) {
   let browser = 'other';
@@ -66,6 +68,10 @@ export default {
             os,
             source,
             String(region).slice(0, 32),
+            String(d.vid || '').slice(0, 16),      // blob11: per-visit id (sessionStorage, no cookie)
+            String(d.hop || '').slice(0, 4),       // blob12: pageview number within the visit
+            String(d.detail || '').slice(0, 64),   // blob13: signup form id, or click target
+            String(d.entry || '').slice(0, 64),    // blob14: first path of the visit
           ],
           doubles: [Number(d.seconds) || 0, Number(d.scroll) || 0, Number(d.load) || 0],
           indexes: [event],

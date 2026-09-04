@@ -75,7 +75,7 @@ h1{font-family:'Bungee',cursive;font-weight:400;font-size:clamp(28px,6vw,42px);l
   <div class="ctabox" id="ctabox">
     <h2>Get new editions in your inbox first</h2>
     <p>Free, no spam. Plus things that never hit this page, including the Secret Tapes.</p>
-    <form class="js-signup-form" novalidate>
+    <form class="js-signup-form" data-form="hub" novalidate>
       <div class="form-row">
         <input type="email" name="email" placeholder="you@flipperskills.com" required aria-label="Email address" autocomplete="email">
         <input type="email" name="email2" placeholder="retype your email" required aria-label="Confirm email address" autocomplete="email">
@@ -121,7 +121,23 @@ h1{font-family:'Bungee',cursive;font-weight:400;font-size:clamp(28px,6vw,42px);l
   }
   window.addEventListener('scroll', depth, {passive:true});
   depth();
-  function send(event){
+  /* per-visit id: random, lives in sessionStorage until the tab closes, no cookies,
+     nothing personal. Lets the dashboard see the path one visit took (home -> edition -> signup). */
+  var VID = '', HOP = 0, ENTRY = '';
+  try{
+    VID = sessionStorage.getItem('zahler_vid') || '';
+    if(!VID){ VID = Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4); sessionStorage.setItem('zahler_vid', VID); sessionStorage.setItem('zahler_hop', '0'); sessionStorage.setItem('zahler_entry', location.pathname); }
+    HOP = parseInt(sessionStorage.getItem('zahler_hop') || '0', 10) + 1; sessionStorage.setItem('zahler_hop', String(HOP));
+    ENTRY = sessionStorage.getItem('zahler_entry') || location.pathname;
+  }catch(e){}
+  /* clicks on internal links (READ EDITION 1, the learn-pinball hub) so the path is complete */
+  document.addEventListener('click', function(ev){
+    var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+    if(!a) return;
+    var href = a.getAttribute('href') || '';
+    if(href.indexOf('/learn-pinball') === 0 || href.indexOf('https://zahlerpinball.com/learn-pinball') === 0 || href === '/' || href.indexOf('#') === 0) send('click', href.slice(0, 64));
+  }, {capture:true, passive:true});
+  function send(event, detail){
     if(event === 'view'){
       if(viewSent) return;
       viewSent = true;
@@ -134,6 +150,8 @@ h1{font-family:'Bungee',cursive;font-weight:400;font-size:clamp(28px,6vw,42px);l
     try{ via = new URLSearchParams(location.search).get('via') || ''; }catch(e){}
     var payload = JSON.stringify({
       event: event,
+      vid: VID, hop: HOP, entry: ENTRY,
+      detail: String(detail || '').slice(0, 64),
       path: location.pathname + (via ? '?via=' + via.slice(0, 32) : ''),
       ref: ref,
       device: window.matchMedia('(max-width: 760px)').matches ? 'mobile' : 'desktop',
@@ -263,7 +281,7 @@ h1{font-family:'Bungee',cursive;font-weight:400;font-size:clamp(28px,6vw,42px);l
           if(ok) ok.style.display = 'block';
           flag.set();
           markDone(form);
-          if(window.zahlerBeacon) window.zahlerBeacon('signup');
+          if(window.zahlerBeacon) window.zahlerBeacon('signup', form.getAttribute('data-form') || 'form');
         })
         .catch(function(){
           btn.disabled = false;
