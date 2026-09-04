@@ -49,6 +49,7 @@
       "sameAs": [
         "https://www.facebook.com/ZahlerPinball",
         "https://www.facebook.com/groups/zahlerpinball",
+        "https://www.instagram.com/zahlerpinball/",
         "https://www.youtube.com/@ZahlerPinball"
       ]
     },
@@ -806,8 +807,12 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     }
   }
 
-  function tick(){
-    scrollX = (scrollX + SPEED) % msgWidth;
+  // Time-based: SPEED is per 60Hz frame, so 120/144Hz laptops no longer scroll 2x+ faster.
+  let lastT = 0;
+  function tick(now){
+    const dt = lastT ? Math.min(now - lastT, 100) : 16.67;
+    lastT = now;
+    scrollX = (scrollX + SPEED * dt / 16.67) % msgWidth;
     render();
     requestAnimationFrame(tick);
   }
