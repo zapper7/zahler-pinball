@@ -584,7 +584,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           <div class="sf-row">
             <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address" autocomplete="email">
             <input type="email" name="email2" placeholder="retype your email" required aria-label="Confirm email address" autocomplete="email">
-            <button type="submit">SEND ME THE FREE SECRETS</button>
+            <button type="submit">SIGN ME UP FREE</button>
           </div>
         </form>
         <div class="sf-success"><span class="sf-l1">Wait! Your signup is NOT complete...</span><span class="sf-l2">We just sent you an email. Press 'Opt-In to Newsletter' inside it to finish signing up.</span><span class="sf-l3">If it doesn't arrive within 10 minutes, please add coach@zahlerpinball.com to your allowed senders list and <a href="#" class="sf-again">sign up again</a>.</span></div><div class="sf-done">YOU'VE SUBMITTED YOUR EMAIL &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
@@ -608,8 +608,9 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
           <span class="reel"></span>
           <span>ZP-001 · iPHONE MEMO · UNEDITED</span>
         </div>
-        <p>No cameras. No interviews. Just the truth. Newsletter subscribers hear it first.</p>
-        <a class="btn btn-fill" href="#newsletter">Unlock the tapes</a>
+        <p>No cameras. No interviews. Just the truth. Not released yet. They go out by email, to the list, before anywhere else.</p>
+        <a class="btn btn-fill tapes-cta" href="#newsletter">Be first to hear them</a>
+        <p class="tapes-done" style="display:none;font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--amber)">YOU'RE ON THE LIST.</p>
       </div>
     </div>
   </section>
@@ -645,7 +646,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
       <div class="signup-box reveal">
         <p class="eyebrow">The Newsletter</p>
         <h2>JOIN PLAYER ONE'S INBOX</h2>
-        <p>Straight-shooting tips, tournament secrets, new-game strategy before it hits the scene, interviews with champions, and first access to the Secret Tapes, the videos, and everything Pinball University.</p>
+        <p>Straight-shooting tips, tournament secrets, new-game strategy before it hits the scene, and interviews with champions. Subscribers get everything first.</p>
 
         <!--
           Wired to Kit (form 9821722) via the shared .js-signup-form handler below.
@@ -865,7 +866,14 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   const forms = Array.from(document.querySelectorAll('.js-signup-form'));
   const part = (form, sel) => form.parentElement.querySelector(sel);
 
+  function tapesState(){
+    /* signed-up visitors have no form to jump to, so the tapes button becomes a plain statement */
+    var on = flag.get();
+    document.querySelectorAll('.tapes-cta').forEach(function(el){ el.style.display = on ? 'none' : ''; });
+    document.querySelectorAll('.tapes-done').forEach(function(el){ el.style.display = on ? '' : 'none'; });
+  }
   function markDone(exceptForm){
+    tapesState();
     forms.forEach(function(f){
       if(f === exceptForm) return;
       f.style.display = 'none';
@@ -982,6 +990,7 @@ footer .frow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
   // returning subscriber: greet, don't re-pitch
   if(flag.get()) markDone(null);
+  tapesState();
 })();
 
 /* ===== engagement beacon (first-party, no cookies) =====
