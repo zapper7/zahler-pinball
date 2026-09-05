@@ -30,6 +30,9 @@ body{overflow-x:hidden;background:var(--ink);color:var(--cream);font-family:'Arc
 .kicker{font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin:34px 0 10px}
 h1{font-family:'Bungee',cursive;font-weight:400;font-size:clamp(27px,6vw,40px);line-height:1.12;margin-bottom:8px}
 .dek{color:var(--steel);font-size:16px;margin-bottom:30px}
+.signup-top{margin:0 0 12px}
+.signup-top a{color:var(--amber);text-decoration:underline;text-underline-offset:3px;font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:.06em}
+#signup{scroll-margin-top:24px}
 article p{margin:0 0 18px}
 article .lead{font-size:20px;font-weight:600}
 article ol,article ul{margin:0 0 18px 24px}
@@ -65,6 +68,7 @@ article .ps{color:var(--steel);font-size:15.5px;border-left:2px solid var(--line
 <div class="wrap">
   <a class="brand" href="/">ZAHLER <b>PINBALL</b></a>
   <div class="kicker"><a href="/learn-pinball/" style="color:var(--amber);text-decoration:none">Learn Pinball</a> &middot; Edition 1</div>
+  <p class="signup-top"><a href="#signup">Sign Me Up For Future Editions, Here</a></p>
   <h1>Look before you plunge.</h1>
   <p class="dek">How to play any pinball machine you walk up to: the 30-second scan that gives you an advantage before you even plunge. From the coach's side of the glass.</p>
   <article>
@@ -118,12 +122,9 @@ article .ps{color:var(--steel);font-size:15.5px;border-left:2px solid var(--line
 
       <p class="sig">- Steve and Jason</p>
 
-      <p class="ps"><strong>P.S.</strong> Yes, there are recordings Jason didn't know I was making. The Secret Tapes are real (Jason has since given his blessing), and this list hears them first.</p>
-
-      <p class="ps"><strong>P.P.S.</strong> Come tell us which machine is beating you in <a href="https://www.facebook.com/groups/zahlerpinball">the Zahler Pinball Community</a>, our Facebook group.</p>
   </article>
   <div class="ctabox" id="ctabox">
-    <h2>Get the next one in your inbox</h2>
+    <h2 id="signup">Get the next one in your inbox</h2>
     <p>Free, no schedule, no spam. Editions launch when they're ready, and subscribers hear everything first (including the Secret Tapes).</p>
     <form class="js-signup-form" data-form="edition1" novalidate>
       <div class="form-row">
