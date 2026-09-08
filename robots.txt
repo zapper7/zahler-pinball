@@ -3,6 +3,7 @@
 
 User-agent: *
 Disallow: /beacon
+Disallow: /share/
 Allow: /
 
 # AI crawlers, explicitly welcome
