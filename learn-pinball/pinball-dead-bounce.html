@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learn Pinball — Every Edition of the Zahler Pinball Newsletter</title>
-<meta name="description" content="Learn pinball from Jason Zahler, three-time consecutive IFPA World Champion, and his coach dad Steve. Every edition of the free training newsletter, readable on the web.">
-<link rel="canonical" href="https://zahlerpinball.com/learn-pinball/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Learn Pinball — the Zahler Pinball newsletter archive">
-<meta property="og:description" content="Every edition of the free training newsletter from the world #1 and his coach dad.">
-<meta property="og:url" content="https://zahlerpinball.com/learn-pinball/">
+<title>The Best Flip Is No Flip: The Pinball Dead Bounce — Zahler Pinball, Edition 2</title>
+<meta name="description" content="Why the world No. 1 pinball player usually does nothing when the ball comes down, and how to learn the dead bounce, the save that looks like a mistake. Edition 2 of the Zahler Pinball training newsletter.">
+<link rel="canonical" href="https://zahlerpinball.com/learn-pinball/pinball-dead-bounce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Best Flip Is No Flip (Edition 2: The Dead Bounce)">
+<meta property="og:description" content="Why the world No. 1 usually does nothing when the ball comes down. From the player's side of the glass.">
+<meta property="og:url" content="https://zahlerpinball.com/learn-pinball/pinball-dead-bounce">
 <meta property="og:image" content="https://zahlerpinball.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,24 +23,31 @@
 :root{--ink:#130e09;--panel:#1d150d;--amber:#ffae00;--amber-dim:#5a3a08;--red:#e63329;--cream:#f6ead6;--steel:#9b8e7c;--line:#2c2115}
 *{margin:0;padding:0;box-sizing:border-box}
 html{overflow-x:hidden}
-body{overflow-x:hidden;background:var(--ink);color:var(--cream);font-family:'Archivo',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;padding:26px 18px 70px}
+body{overflow-x:hidden;background:var(--ink);color:var(--cream);font-family:'Archivo',system-ui,sans-serif;font-size:17.5px;line-height:1.65;-webkit-font-smoothing:antialiased;padding:26px 18px 70px}
 .wrap{max-width:660px;margin:0 auto}
-.brand{font-family:'Bungee',cursive;font-size:15px;color:var(--cream);text-decoration:none}
+.brand{font-family:'Bungee',cursive;font-size:15px;letter-spacing:.02em;color:var(--cream);text-decoration:none}
 .brand b{color:var(--amber)}
-h1{font-family:'Bungee',cursive;font-weight:400;font-size:clamp(28px,6vw,42px);line-height:1.1;margin:30px 0 10px}
-.dek{color:var(--steel);font-size:16.5px;margin-bottom:34px}
-.edition{display:block;border:1.5px solid var(--line);border-radius:16px;background:var(--panel);padding:20px 22px;margin-bottom:14px;text-decoration:none;color:var(--cream);transition:border-color .12s}
-.edition:hover{border-color:var(--amber)}
-.edition .no{font-family:'Share Tech Mono',monospace;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
-.edition h2{font-family:'Bungee',cursive;font-weight:400;font-size:20px;margin-bottom:6px}
-.edition p{color:var(--steel);font-size:15px}
-.edition .go{color:var(--amber);font-family:'Share Tech Mono',monospace;font-size:12.5px;margin-top:10px;display:inline-block}
-.soon{border:1.5px dashed var(--line);border-radius:16px;padding:18px 22px;color:var(--steel);font-size:14.5px;margin-bottom:14px}
-.ctabox{border:1.5px solid var(--amber);border-radius:16px;background:var(--panel);padding:22px;margin-top:32px;text-align:center}
+.kicker{font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin:34px 0 10px}
+h1{font-family:'Bungee',cursive;font-weight:400;font-size:clamp(27px,6vw,40px);line-height:1.12;margin-bottom:8px}
+.dek{color:var(--steel);font-size:16px;margin-bottom:30px}
+.signup-top{margin:0 0 12px}
+.signup-top a{color:var(--amber);text-decoration:underline;text-underline-offset:3px;font-family:'Share Tech Mono',monospace;font-size:15px;letter-spacing:.06em}
+#signup{scroll-margin-top:24px}
+article p{margin:0 0 18px}
+article .lead{font-size:20px;font-weight:600}
+article ol,article ul{margin:0 0 18px 24px}
+article li{margin-bottom:12px}
+article strong{color:#fff}
+article a{color:var(--amber)}
+article .sig{margin-top:28px;font-size:18px}
+article .ps{color:var(--steel);font-size:15.5px;border-left:2px solid var(--line);padding-left:12px}
+.ctabox{border:1.5px solid var(--amber);border-radius:16px;background:var(--panel);padding:22px 22px 24px;margin:40px 0 0;text-align:center}
 .ctabox h2{font-family:'Bungee',cursive;font-weight:400;font-size:19px;margin-bottom:8px}
 .ctabox p{color:var(--steel);font-size:15px;margin-bottom:16px}
 .ctabtn{display:inline-block;font-family:'Bungee',cursive;font-size:15px;background:var(--amber);color:var(--ink);text-decoration:none;border-radius:12px;padding:14px 26px}
 .ctabtn:hover{background:#ffc23d}
+.homelink{display:block;text-align:center;margin-top:26px;color:var(--steel);font-size:14px}
+.homelink a{color:var(--amber)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 .form-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -60,29 +67,42 @@ h1{font-family:'Bungee',cursive;font-weight:400;font-size:clamp(28px,6vw,42px);l
 <body>
 <div class="wrap">
   <a class="brand" href="/">ZAHLER <b>PINBALL</b></a>
-  <h1>Learn Pinball</h1>
-  <p class="dek">Every edition of the free training newsletter, readable right here. From Jason Zahler, three-time consecutive IFPA World Champion and world #1, and Steve Zahler, the dad who coaches him. No schedule: editions land when they're ready, and subscribers get them first.</p>
+  <div class="kicker"><a href="/learn-pinball/" style="color:var(--amber);text-decoration:none">Learn Pinball</a> &middot; Edition 2</div>
+  <p class="signup-top"><a href="#signup">Sign me up for FREE upcoming editions</a></p>
+  <h1>The best flip is no flip.</h1>
+  <p class="dek">Why the world No. 1 usually does nothing when the ball comes down, and how to learn the dead bounce, the save that looks like a mistake. From the player's side of the glass.</p>
+  <article>
+<p class="lead">Jason here.</p>
 
-  <a class="edition" href="/learn-pinball/how-to-play-any-pinball-machine">
-    <div class="no">Edition 1</div>
-    <h2>Look before you plunge.</h2>
-    <p>How to play any pinball machine you walk up to: the 30-second scan that gives you an advantage before you even plunge. From the coach's side of the glass.</p>
-    <span class="go">Read it &rarr;</span>
-  </a>
+      <p>Last time, my dad said that you should look before you plunge. Most of you joined after that edition went out. It's on the site at <a href="https://zahlerpinball.com/learn-pinball/how-to-play-any-pinball-machine">zahlerpinball.com/learn-pinball/how-to-play-any-pinball-machine</a> if you want to start there. I'm writing this email so that you know what I'm thinking about when it comes to flipping, and how often I'm not doing it.</p>
 
-  <a class="edition" href="/learn-pinball/pinball-dead-bounce">
-    <div class="no">Edition 2</div>
-    <h2>The best flip is no flip.</h2>
-    <p>Why the world No. 1 usually does nothing when the ball comes down, and how to learn the dead bounce, the save that looks like a mistake. From the player's side of the glass.</p>
-    <span class="go">Read it &rarr;</span>
-  </a>
+      <p style="font-family:'Share Tech Mono',monospace;color:var(--amber);font-size:13px;letter-spacing:.22em;text-transform:uppercase;margin:0 0 8px">Tip #2</p>
 
-  <div class="soon">Edition 3 is in the shooter lane. Subscribers hear it first.</div>
+      <p class="h">The best flip is no flip.</p>
 
+      <p>I know the feeling. The ball comes down, you want to press both flipper buttons, and the ball goes somewhere you didn't intend. Gone. I've lost hundreds of balls that way.</p>
+
+      <p>What I do instead, most of the time, is nothing. I let the ball come down and bounce off the flipper I'm <em>not</em> using. It loses most of its energy, goes to the other flipper, and I'm waiting there. It's called a dead bounce. It's boring to watch. That's why it works.</p>
+
+      <p>The reason it works: a moving flipper adds energy to a moving ball and makes the bounce unpredictable. A still flipper absorbs energy. When the ball is coming down at a manageable speed, the best move is usually no move. Fewer responses, fewer ways to lose the ball.</p>
+
+      <p>I learned this when I was very young. The part after the bounce (the post pass, tap pass, trap-up) took me thousands of games.</p>
+
+      <p>If you want to try it: pick one ball you'd normally flip at and let it bounce. You'll drain a few while you learn the feel. Eventually you stop draining them.</p>
+
+      <p>I'm keeping this email short on purpose. The dead bounce is the important part.</p>
+
+      <p class="sig">Keep on flipping (or not),<br><strong>Jason</strong></p>
+
+      <p class="ps"><strong>P.S.</strong> We started a Facebook group, <a href="https://www.facebook.com/groups/zahlerpinball">the Zahler Pinball Community</a>. Come say hi. We're also on Instagram: <a href="https://www.instagram.com/zahlerpinball">instagram.com/zahlerpinball</a>. And previous editions end up on the site at <a href="https://zahlerpinball.com/learn-pinball/">zahlerpinball.com/learn-pinball</a>.</p>
+
+      <p class="ps"><strong>P.P.S.</strong> If you know someone who'd enjoy this, send them to <a href="https://zahlerpinball.com">zahlerpinball.com</a>. It's free, and it helps more than you'd think.</p>
+
+  </article>
   <div class="ctabox" id="ctabox">
-    <h2>Get new editions in your inbox first</h2>
-    <p>Free, no spam. Plus things that never hit this page, including the Secret Tapes.</p>
-    <form class="js-signup-form" data-form="hub" novalidate>
+    <h2 id="signup">Get the next one in your inbox</h2>
+    <p>Free, no schedule, no spam. Editions launch when they're ready, and subscribers hear everything first (including the Secret Tapes).</p>
+    <form class="js-signup-form" data-form="edition2" novalidate>
       <div class="form-row">
         <input type="email" name="email" placeholder="you@flipperskills.com" required aria-label="Email address" autocomplete="email">
         <input type="email" name="email2" placeholder="retype your email" required aria-label="Confirm email address" autocomplete="email">
@@ -93,6 +113,7 @@ h1{font-family:'Bungee',cursive;font-weight:400;font-size:clamp(28px,6vw,42px);l
     <div class="sf-done">YOU'VE SUBMITTED YOUR EMAIL &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
     <p style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--steel);margin-top:14px;letter-spacing:.06em">Free. No spam. Unsubscribe anytime.</p>
   </div>
+  <div class="homelink"><a href="/learn-pinball/">Browse every edition &rarr;</a><br>More about Jason, Steve, and the whole operation at <a href="/">zahlerpinball.com</a></div>
 </div>
 <script>
 /* ===== engagement beacon (first-party, no cookies) =====
