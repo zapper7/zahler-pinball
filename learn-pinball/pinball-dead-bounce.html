@@ -54,6 +54,9 @@ article .ps{color:var(--steel);font-size:15.5px;border-left:2px solid var(--line
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 .form-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.quote{max-width:560px;margin:0 auto 22px;text-align:center}
+.quote blockquote{margin:0;font-size:18px;line-height:1.45;color:var(--cream)}
+.quote figcaption{margin-top:10px;font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
 .js-signup-form input{flex:1 1 200px;min-width:0;background:#0d0906;border:1.5px solid #4a3a26;border-radius:10px;color:var(--cream);font-family:'Share Tech Mono',monospace;font-size:14px;padding:12px 13px}
 .js-signup-form input:focus{outline:2px solid var(--amber)}
 .js-signup-form input::placeholder{color:var(--steel)}
@@ -106,6 +109,10 @@ article .ps{color:var(--steel);font-size:15.5px;border-left:2px solid var(--line
   <div class="ctabox" id="ctabox">
     <h2 id="signup">Get the next one in your inbox</h2>
     <p>Free, no schedule, no spam. Editions launch when they're ready, and subscribers hear everything first (including the Secret Tapes).</p>
+    <figure class="quote">
+      <blockquote>"Love this. I've been practicing it already and now I'm inspired to keep at it!"</blockquote>
+      <figcaption>Jess Salzman &middot; OMG Pinball</figcaption>
+    </figure>
     <form class="js-signup-form" data-form="edition2" novalidate>
       <div class="form-row">
         <input type="email" name="email" placeholder="you@flipperskills.com" required aria-label="Email address" autocomplete="email">
