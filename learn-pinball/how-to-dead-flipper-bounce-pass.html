@@ -51,6 +51,8 @@ article .ps{color:var(--steel);font-size:15.5px;border-left:2px solid var(--line
 .ctabtn:hover{background:#ffc23d}
 .homelink{display:block;text-align:center;margin-top:26px;color:var(--steel);font-size:14px}
 .homelink a{color:var(--amber)}
+/* the site line is a separate thought from the archive link above it, so it gets real air, not a <br> */
+.homelink .sub{display:block;margin-top:18px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 .form-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -120,7 +122,7 @@ article .ps{color:var(--steel);font-size:15.5px;border-left:2px solid var(--line
     <div class="sf-done">YOU'VE SUBMITTED YOUR EMAIL &middot; ONE NEWSLETTER COVERS IT ALL <a href="#" class="sf-undo">(different email?)</a></div>
     <p style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--steel);margin-top:14px;letter-spacing:.06em">Free. No spam. Unsubscribe anytime.</p>
   </div>
-  <div class="homelink"><a href="/learn-pinball/">Browse more editions &rarr;</a><br>More about Jason, Steve, and the whole operation at <a href="/">zahlerpinball.com</a></div>
+  <div class="homelink"><a href="/learn-pinball/">Browse more editions &rarr;</a><span class="sub">More about Jason, Steve, and the whole operation at <a href="/">zahlerpinball.com</a></span></div>
 </div>
 <script>
 /* ===== engagement beacon (first-party, no cookies) =====
