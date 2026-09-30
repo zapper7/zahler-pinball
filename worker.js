@@ -45,6 +45,45 @@ export default {
       url.hostname = 'zahlerpinball.com';
       return Response.redirect(url.toString(), 301);
     }
+    // /feedback: players' ideas for our games (Steve 2026-09-30). Same Analytics Engine dataset, event "feedback";
+    //   blobs: [event, game, kind, text (<= 1500 chars), device, self, country, browser, os, contact (optional), vid, level, source host]
+    //   doubles: [rating (0 = none, 1..5), score]. The admin pulls these every few minutes. CORS open so the prototype
+    //   on the admin host can post here too. A filled "website" field (bots) is dropped.
+    if (url.pathname === '/feedback') {
+      const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' };
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
+      if (request.method !== 'POST') return new Response('POST only', { status: 405, headers: cors });
+      try {
+        const d = await request.json();
+        const text = String(d.text || '').trim().slice(0, 1500);
+        if (!text || d.website) return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { ...cors, 'Content-Type': 'application/json' } });
+        const { browser, os } = parseUA(request.headers.get('User-Agent') || '');
+        let src = '';
+        try { src = new URL(request.headers.get('Origin') || request.headers.get('Referer') || '').host; } catch (e) {}
+        env.ZAHLER_EVENTS.writeDataPoint({
+          blobs: [
+            'feedback',
+            String(d.game || '').slice(0, 48),
+            String(d.kind || 'idea').slice(0, 16),
+            text,
+            String(d.device || '').slice(0, 32),
+            d.self === '1' ? '1' : '0',
+            String((request.cf && request.cf.country) || '').slice(0, 8),
+            browser,
+            os,
+            String(d.contact || '').slice(0, 120),
+            String(d.vid || '').slice(0, 16),
+            String(d.level || '').slice(0, 24),
+            src.slice(0, 64),
+          ],
+          doubles: [Math.max(0, Math.min(5, Number(d.rating) || 0)), Number(d.score) || 0],
+          indexes: ['feedback'],
+        });
+      } catch (e) {
+        return new Response(JSON.stringify({ ok: false }), { status: 400, headers: { ...cors, 'Content-Type': 'application/json' } });
+      }
+      return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { ...cors, 'Content-Type': 'application/json' } });
+    }
     if (url.pathname === '/beacon' && request.method === 'POST') {
       try {
         const d = await request.json();
